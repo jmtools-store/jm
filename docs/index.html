@@ -127,6 +127,31 @@
   .resp{margin-top:22px;text-align:center;color:var(--muted);font-size:14px;padding:14px 18px;
        border:1px dashed var(--line);border-radius:12px;background:var(--card)}
 
+  /* ---------- ticket modal ---------- */
+  .tk-modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;
+      background:rgba(5,8,16,.72);backdrop-filter:blur(6px)}
+  .tk-modal[hidden]{display:none}
+  .tk-box{position:relative;width:100%;max-width:520px;max-height:92vh;overflow:auto;background:var(--bg2);
+      border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+  .tk-close{position:absolute;top:14px;inset-inline-end:14px;width:34px;height:34px;border-radius:10px;border:1px solid var(--line);
+      background:rgba(255,255,255,.05);color:var(--txt);font-size:15px;cursor:pointer}
+  .tk-close:hover{background:rgba(255,255,255,.12)}
+  .tk-ic{font-size:26px}
+  .tk-box h3{font-size:19px;font-weight:900;margin:8px 0 4px}
+  .tk-box p.tk-sub{color:var(--muted);font-size:13.5px;margin-bottom:14px}
+  .tk-box label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:13px 0 6px}
+  .tk-box input,.tk-box select,.tk-box textarea{width:100%;padding:11px 14px;border-radius:11px;border:1px solid var(--line);
+      background:rgba(255,255,255,.04);color:var(--txt);font-family:inherit;font-size:14px}
+  .tk-box input:focus,.tk-box select:focus,.tk-box textarea:focus{outline:none;border-color:var(--accent)}
+  .tk-box textarea{resize:vertical;min-height:90px}
+  .tk-box select option{background:var(--bg2);color:var(--txt)}
+  .tk-submit{width:100%;margin-top:18px;padding:13px;border-radius:12px;border:0;font-weight:900;font-size:15px;color:#fff;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));cursor:pointer}
+  .tk-submit:disabled{opacity:.65;cursor:default}
+  .tk-note{margin-top:12px;text-align:center;color:var(--muted);font-size:12.5px}
+  .tk-ok{text-align:center;padding:22px 0;color:var(--ok);font-weight:800;font-size:15.5px}
+  .tk-err{text-align:center;color:var(--warn);font-size:13px;margin-top:10px}
+
   /* ---------- faq ---------- */
   details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px}
   summary{cursor:pointer;font-weight:800;font-size:15.5px;display:flex;align-items:center;gap:10px}
@@ -370,9 +395,9 @@
         <div><h3 data-i18n="lc_t">Live chat — fastest</h3><p data-i18n="lc_d">Talk to us directly from this page. Usually a reply within 1–6 hours.</p></div>
         <span class="s-btn" data-i18n="lc_b">Start chat now →</span>
       </button>
-      <button type="button" class="card s-card s-act" onclick="openChat();return false;">
+      <button type="button" class="card s-card s-act" onclick="openTicket();return false;">
         <div class="s-ic">🎫</div>
-        <div><h3 data-i18n="tk_t">Report a problem</h3><p data-i18n="tk_d">Technical issue or bug? Open a ticket from the chat window (“Submit a ticket” tab).</p></div>
+        <div><h3 data-i18n="tk_t">Report a problem</h3><p data-i18n="tk_d">Technical issue or bug? Fill a short form — it goes straight to our ticket inbox, no chat needed.</p></div>
         <span class="s-btn" data-i18n="tk_b">Open a ticket →</span>
       </button>
       <button type="button" class="card s-card s-act" onclick="openChat();return false;">
@@ -384,6 +409,37 @@
     <div class="resp" data-i18n="resp_line">🕐 We reply within 1–6 hours · 24/7</div>
   </div>
 </section>
+
+<div class="tk-modal" id="tkModal" hidden aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="tk-box">
+    <button type="button" class="tk-close" id="tkClose" aria-label="Close">✕</button>
+    <div class="tk-ic">🎫</div>
+    <h3 data-i18n="tkf_t">Open a support ticket</h3>
+    <p class="tk-sub" data-i18n="tkf_sub">Fill in the short form — it goes straight to our tickets inbox. You'll get a reply on the details you enter within 1–6 hours.</p>
+    <form id="tkForm" novalidate>
+      <label for="tkName" data-i18n="tkf_name">Your name</label>
+      <input type="text" id="tkName" name="name" autocomplete="name" required>
+      <label for="tkContact" data-i18n="tkf_contact">Email / phone / Telegram</label>
+      <input type="text" id="tkContact" name="contact" required>
+      <label for="tkCat" data-i18n="tkf_cat">Type of issue</label>
+      <select id="tkCat" name="category">
+        <option value="" data-i18n="tkf_cat0">Select…</option>
+        <option value="Download" data-i18n="cat_dl">Download problem</option>
+        <option value="Install" data-i18n="cat_in">Install / activation problem</option>
+        <option value="License" data-i18n="cat_lic">License / key issue</option>
+        <option value="Payment" data-i18n="cat_pay">Payment / shipping</option>
+        <option value="Bug" data-i18n="cat_bug">Bug / app error</option>
+        <option value="Other" data-i18n="cat_other">Other</option>
+      </select>
+      <label for="tkMsg" data-i18n="tkf_msg">Describe the problem</label>
+      <textarea id="tkMsg" name="message" required></textarea>
+      <button type="submit" class="tk-submit" id="tkSubmit" data-i18n="tkf_btn">Send ticket</button>
+      <div class="tk-note" data-i18n="tkf_note">🕐 We reply within 1–6 hours · 24/7</div>
+      <div class="tk-err" id="tkErr" hidden></div>
+    </form>
+    <div class="tk-ok" id="tkOk" hidden></div>
+  </div>
+</div>
 
 <section id="faq">
   <div class="wrap">
@@ -417,9 +473,15 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   const REPO = "jmtools-store/jm";
   const LATEST_URL = "https://github.com/jmtools-store/jm/releases/latest/download/JM_Setup.exe";
+
+  const EJ_PUBLIC_KEY = "REPLACE_ME";   // EmailJS public key
+  const EJ_SERVICE_ID = "REPLACE_ME";   // EmailJS service ID (your Gmail)
+  const EJ_TEMPLATE_ID = "REPLACE_ME";  // EmailJS template ID → sends to your Tawk Ticket Forwarding Email
+  let EJ_CONFIGURED = false;            // set to true once the 3 IDs above are real
 
   const I18N = {
     en: {
@@ -446,8 +508,14 @@
       sup_h2:"Support & help", sup_sub:"We reply within 1–6 hours, day and night — Arabic & English support",
       lc_t:"Live chat — fastest", lc_d:"Talk to us directly from this page. Usually a reply within 1–6 hours.",
       lc_b:"Start chat now →",
-      tk_t:"Report a problem", tk_d:"Technical issue or bug? Open a ticket from the chat window (“Submit a ticket” tab).",
+      tk_t:"Report a problem", tk_d:"Technical issue or bug? Fill a short form — it goes straight to our ticket inbox, no chat needed.",
       tk_b:"Open a ticket →",
+      tkf_t:"Open a support ticket",
+      tkf_sub:"Fill in the short form — it goes straight to our tickets inbox. You'll get a reply on the details you enter within 1–6 hours.",
+      tkf_name:"Your name", tkf_contact:"Email / phone / Telegram", tkf_cat:"Type of issue",
+      tkf_cat0:"Select…", cat_dl:"Download problem", cat_in:"Install / activation problem",
+      cat_lic:"License / key issue", cat_pay:"Payment / shipping", cat_bug:"Bug / app error", cat_other:"Other",
+      tkf_msg:"Describe the problem", tkf_btn:"Send ticket", tkf_note:"🕐 We reply within 1–6 hours · 24/7",
       buy_t:"Buy a license", buy_d:"Payment is completed manually through live chat — ask for the details.",
       buy_b:"Ask for details →",
       resp_line:"🕐 We reply within 1–6 hours · 24/7",
@@ -504,8 +572,14 @@
       sup_h2:"الدعم والمساعدة", sup_sub:"بنرد خلال من ساعة إلى 6 ساعات، ليل ونهار — الدعم بالعربي والإنجليزي",
       lc_t:"المحادثة المباشرة — الأسرع", lc_d:"كلمنا هنا مباشرة من الصفحة دي. الرد غالباً خلال 1 إلى 6 ساعات.",
       lc_b:"ابدأ الشات الآن ←",
-      tk_t:"بلّغ عن مشكلة", tk_d:"مشكلة تقنية أو خطأ؟ افتح تذكرة من داخل الشات (تبويب \"رفع تذكرة\").",
+      tk_t:"بلّغ عن مشكلة", tk_d:"مشكلة تقنية أو خطأ؟ املأ فورمة قصيرة بتوصل مباشرة لإنبوكس التذاكر — من غير شات.",
       tk_b:"افتح تذكرة ←",
+      tkf_t:"افتح تذكرة دعم",
+      tkf_sub:"املأ الفورمة القصيرة دي — بتوصل مباشرة لإنبوكس التذاكر. هتيجيلك رد على بياناتك خلال 1 إلى 6 ساعات.",
+      tkf_name:"اسمك", tkf_contact:"إيميل / موبايل / تيليجرام", tkf_cat:"نوع المشكلة",
+      tkf_cat0:"اختار…", cat_dl:"مشكلة في التحميل", cat_in:"مشكلة في التثبيت / التفعيل",
+      cat_lic:"مشكلة في الترخيص / المفتاح", cat_pay:"الدفع / الشحن", cat_bug:"خطأ / عطل في البرنامج", cat_other:"غير ذلك",
+      tkf_msg:"اشرح المشكلة", tkf_btn:"إرسال التذكرة", tkf_note:"🕐 بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
       buy_t:"شراء الترخيص", buy_d:"الدفع دلوقتي بيتتم يدويًا من خلال المحادثة المباشرة — اطلب التفاصيل.",
       buy_b:"اطلب التفاصيل ←",
       resp_line:"🕐 بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
@@ -646,6 +720,80 @@
       else window.Tawk_API = window.Tawk_API || { onLoad: function(){ Tawk_API.maximize(); } };
     }catch(e){}
   }
+
+  /* ---------- ticket modal ---------- */
+  function openTicket(){
+    const m = document.getElementById("tkModal");
+    m.hidden = false;
+    m.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+    document.getElementById("tkForm").hidden = false;
+    document.getElementById("tkOk").hidden = true;
+    document.getElementById("tkErr").hidden = true;
+    try{ document.getElementById("tkName").focus(); }catch(e){}
+  }
+  function closeTicket(){
+    const m = document.getElementById("tkModal");
+    m.hidden = true;
+    m.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  }
+  document.getElementById("tkClose").addEventListener("click", closeTicket);
+  document.getElementById("tkModal").addEventListener("click", function(e){ if(e.target === this) closeTicket(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeTicket(); });
+
+  document.getElementById("tkForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    const errEl = document.getElementById("tkErr");
+    const btn = document.getElementById("tkSubmit");
+    errEl.hidden = true;
+    const ar = curLang === "ar";
+    if(!EJ_CONFIGURED){
+      errEl.textContent = ar
+        ? "فورمة التذاكر مش مفعّلة بعد — استخدم الشات المباشر مؤقتًا حتى تجهيزها."
+        : "The ticket form is not configured yet — use the live chat until it is.";
+      errEl.hidden = false;
+      return;
+    }
+    const data = {
+      name: document.getElementById("tkName").value.trim(),
+      contact: document.getElementById("tkContact").value.trim(),
+      category: document.getElementById("tkCat").value,
+      message: document.getElementById("tkMsg").value.trim()
+    };
+    if(!data.name || !data.contact || !data.message){
+      errEl.textContent = ar ? "اكتب الاسم ووسيلة التواصل ووصف المشكلة." : "Please fill in your name, contact and the problem.";
+      errEl.hidden = false;
+      return;
+    }
+    try{
+      btn.disabled = true;
+      btn.textContent = ar ? "جاري الإرسال…" : "Sending…";
+      await emailjs.send(EJ_SERVICE_ID, EJ_TEMPLATE_ID, {
+        ticket_name: data.name,
+        ticket_contact: data.contact,
+        ticket_category: data.category || "-",
+        ticket_message: data.message,
+        ticket_lang: curLang,
+        ticket_page: window.location.href
+      }, { publicKey: EJ_PUBLIC_KEY });
+      document.getElementById("tkForm").hidden = true;
+      const ok = document.getElementById("tkOk");
+      ok.textContent = ar
+        ? "✓ تم إرسال التذكرة! هنتواصل معاك على البيانات اللي دخلتها خلال 1 إلى 6 ساعات."
+        : "✓ Ticket sent! We'll contact you on the details you entered within 1–6 hours.";
+      ok.hidden = false;
+    }catch(err){
+      errEl.textContent = ar
+        ? "حصلت مشكلة في الإرسال. جرّب تاني، أو استخدم الشات المباشر."
+        : "Something went wrong sending the ticket. Try again, or use the live chat.";
+      errEl.hidden = false;
+    }finally{
+      btn.disabled = false;
+      btn.textContent = ar ? "إرسال التذكرة" : "Send ticket";
+    }
+  });
+
   document.getElementById("year").textContent = new Date().getFullYear();
   document.querySelector(".logo").addEventListener("click", function(e){
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
