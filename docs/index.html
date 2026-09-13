@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JM — IMVU Product Extractor | التحميل</title>
-<meta name="description" content="JM — أداة استخراج منتجات IMVU الأصلية وتقطيع الصوت ورفع مستواه. تحميل مباشر لكل الإصدارات.">
+<title>JM — IMVU Product Extractor | Download</title>
+<meta name="description" content="JM — IMVU product extractor with original files, audio splitting and volume boost. Direct download for all versions.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-family='Segoe UI,Arial' font-size='30' font-weight='800' fill='white' text-anchor='middle'%3EJM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,25 +19,30 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    font-family:'Cairo',Tahoma,sans-serif;background:var(--bg);color:var(--txt);
+    font-family:'Cairo',system-ui,Tahoma,sans-serif;background:var(--bg);color:var(--txt);
     line-height:1.7;overflow-x:hidden;
     background-image:
       radial-gradient(900px 500px at 85% -10%, rgba(99,102,241,.22), transparent 60%),
       radial-gradient(800px 500px at 0% 10%, rgba(168,85,247,.16), transparent 60%),
       radial-gradient(700px 600px at 50% 120%, rgba(99,102,241,.10), transparent 60%);
   }
+  body[dir="rtl"]{line-height:1.8}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
 
   /* ---------- nav ---------- */
   nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
       background:rgba(10,13,22,.78);border-bottom:1px solid var(--line)}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:14px;flex-wrap:wrap}
   .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px}
   .logo .mark{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
       background:linear-gradient(135deg,var(--accent),var(--accent2));font-size:15px;letter-spacing:1px}
   .nav-links{display:flex;gap:26px;color:var(--muted);font-weight:600;font-size:14.5px}
   .nav-links a:hover{color:var(--txt)}
+  .nav-right{display:flex;align-items:center;gap:12px}
+  .langbtn{padding:8px 14px;border-radius:10px;font-weight:800;font-size:13.5px;cursor:pointer;
+      background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--txt)}
+  .langbtn:hover{background:rgba(255,255,255,.1)}
   .nav-cta{padding:9px 18px;border-radius:10px;font-weight:700;font-size:14px;
      background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
 
@@ -48,10 +53,10 @@
       font-size:13.5px;font-weight:700}
   .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 1.6s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  h1{font-size:clamp(30px,5.4vw,54px);font-weight:900;line-height:1.25;margin:22px 0 14px}
+  h1{font-size:clamp(28px,5.2vw,52px);font-weight:900;line-height:1.25;margin:22px 0 14px}
   h1 .grad{background:linear-gradient(90deg,#818cf8,#c084fc);-webkit-background-clip:text;
       background-clip:text;color:transparent}
-  .sub{color:var(--muted);font-size:clamp(15px,2vw,18px);max-width:640px;margin:0 auto 34px}
+  .sub{color:var(--muted);font-size:clamp(15px,2vw,18px);max-width:680px;margin:0 auto 34px}
 
   .btn-dl{position:relative;display:inline-flex;align-items:center;gap:14px;padding:18px 44px;
       border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));
@@ -89,13 +94,13 @@
   /* ---------- versions ---------- */
   .tbl{width:100%;border-collapse:collapse;border-radius:16px;overflow:hidden;
       background:var(--card);border:1px solid var(--line)}
-  .tbl th,.tbl td{padding:15px 18px;text-align:right;font-size:14.5px;border-bottom:1px solid var(--line)}
+  .tbl th,.tbl td{padding:15px 18px;text-align:start;font-size:14.5px;border-bottom:1px solid var(--line)}
   .tbl th{background:rgba(255,255,255,.04);color:var(--muted);font-weight:700;font-size:13px}
   .tbl tr:last-child td{border-bottom:0}
   .tbl tr:hover td{background:rgba(255,255,255,.03)}
   .vtag{font-weight:900;color:#c7cbfa}
   .tag-chip{display:inline-block;padding:3px 10px;border-radius:99px;background:rgba(52,211,153,.12);
-      border:1px solid rgba(52,211,153,.3);color:var(--ok);font-weight:700;font-size:12px;margin-right:8px}
+      border:1px solid rgba(52,211,153,.3);color:var(--ok);font-weight:700;font-size:12px;margin-inline-start:8px}
   .tdl{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:10px;font-weight:800;
       font-size:13.5px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
       white-space:nowrap;transition:opacity .15s}
@@ -103,6 +108,7 @@
   .tsize{color:var(--muted);font-size:13px}
   .tdate{color:var(--muted);font-size:13.5px}
   .loading{text-align:center;color:var(--muted);padding:30px;font-size:14.5px}
+  .loading-err{text-align:center;color:var(--warn);padding:24px;font-size:14px}
 
   /* ---------- support ---------- */
   .s-card{display:flex;gap:18px;align-items:center;padding:22px 24px}
@@ -118,12 +124,13 @@
   summary{cursor:pointer;font-weight:800;font-size:15.5px;display:flex;align-items:center;gap:10px}
   summary::before{content:"+";color:var(--accent2);font-size:20px;font-weight:900}
   details[open] summary::before{content:"−"}
-  details p{color:var(--muted);font-size:14px;margin-top:12px;padding-right:30px}
+  details p{color:var(--muted);font-size:14px;margin-top:12px}
+  body[dir="rtl"] details p{padding-right:30px}
+  body[dir="ltr"] details p{padding-left:30px}
 
   /* ---------- footer ---------- */
   footer{border-top:1px solid var(--line);padding:38px 0;text-align:center;color:var(--muted);font-size:13.5px}
   footer .brand{color:var(--txt);font-weight:900;font-size:15px}
-  .vmsg{display:none}
 
   @media(max-width:760px){
     nav{position:static}
@@ -141,38 +148,40 @@
   <div class="wrap nav-in">
     <div class="logo"><span class="mark">JM</span> JM Extractor</div>
     <div class="nav-links">
-      <a href="#features">المميزات</a>
-      <a href="#versions">الإصدارات</a>
-      <a href="#support">الدعم</a>
-      <a href="#faq">الأسئلة</a>
+      <a href="#features" data-i18n="nav_features">Features</a>
+      <a href="#versions" data-i18n="nav_versions">Versions</a>
+      <a href="#support" data-i18n="nav_support">Support</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
     </div>
-    <a class="nav-cta" href="https://github.com/jmtools-store/jm/releases/latest/download/JM_Setup.exe">
-      تحميل الآن
-    </a>
+    <div class="nav-right">
+      <button class="langbtn" id="langBtn" type="button">العربية</button>
+      <a class="nav-cta" href="https://github.com/jmtools-store/jm/releases/latest/download/JM_Setup.exe" data-i18n="nav_dl">
+        Download now
+      </a>
+    </div>
   </div>
 </nav>
 
 <header class="hero">
   <div class="wrap">
-    <span class="pill"><span class="dot"></span> يعمل على أحدث نسخة <span id="latestBadge"></span></span>
-    <h1>استخرج منتجات IMVU الأصلية<br>وأدوات صوت احترافية — <span class="grad">بنقرة واحدة</span></h1>
-    <p class="sub">
-      JM أداة ويندوز كاملة: استخراج منتجات IMVU مع الملفات الأصلية، تقطيع الصوت بجودة مضبوطة،
-      ورفع مستوى الصوت بضغطة. سريعة، محمية، وتحديثات تلقائية داخل البرنامج.
+    <span class="pill"><span class="dot"></span><span data-i18n="pill_latest">Runs on the latest version</span> <span id="latestBadge"></span></span>
+    <h1><span data-i18n="hero_h1">Extract IMVU products and full pro audio tools — one click, and job done</span></h1>
+    <p class="sub" data-i18n="hero_sub">
+      JM is a complete Windows tool: it extracts IMVU products with their original files, splits audio with precise quality control, and boosts volume in one click. Fast, protected, with automatic updates built in.
     </p>
     <div>
       <a class="btn-dl" href="https://github.com/jmtools-store/jm/releases/latest/download/JM_Setup.exe">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span>تحميل أحدث إصدار <span id="latestVer" class="sz"></span></span>
+        <span><span data-i18n="dl_latest">Download latest version</span> <span id="latestVer" class="sz"></span></span>
       </a>
     </div>
-    <div class="dl-note">الملف: <b>JM_Setup.exe</b> — معالج تثبيت كامل · تدعم ويندوز 10 / 11 64-bit</div>
+    <div class="dl-note"><span data-i18n="dl_note1">File:</span> <b>JM_Setup.exe</b> <span data-i18n="dl_note2">— full setup wizard · Windows 10 / 11 64-bit</span></div>
 
     <div class="hero-meta">
-      <span class="chip">📦 إصدارات متاحة: <b><span id="verCount">—</span></b></span>
-      <span class="chip">🔄 تحديثات تلقائية داخل البرنامج</span>
-      <span class="chip">🔒 حماية النسخ من العبث</span>
-      <span class="chip">🌙 واجهة عربية مظلمة</span>
+      <span class="chip">📦 <span data-i18n="chip_versions">Available versions:</span> <b><span id="verCount">—</span></b></span>
+      <span class="chip">🔄 <span data-i18n="chip_updates">Automatic in-app updates</span></span>
+      <span class="chip">🔒 <span data-i18n="chip_protected">Protected build</span></span>
+      <span class="chip">🌙 <span data-i18n="chip_ui">Modern dark UI</span></span>
     </div>
   </div>
 </header>
@@ -180,16 +189,16 @@
 <section id="features">
   <div class="wrap">
     <div class="sec-head">
-      <h2>ليه تختار <span class="grad">JM</span>؟</h2>
-      <p>كل اللي محتاجه في أداة واحدة، مصممة لتجربة سريعة ومستقرة</p>
+      <h2><span data-i18n="feat_h2">Why choose</span> <span class="grad">JM</span>?</h2>
+      <p data-i18n="feat_sub">Everything you need in a single tool, designed for speed and stability</p>
     </div>
     <div class="grid g3">
-      <div class="card"><div class="ic">📦</div><h3>استخراج المنتجات</h3><p>سحب منتجات IMVU مع الملفات الأصلية والموارد الموروثة بجودة كاملة.</p></div>
-      <div class="card"><div class="ic">✂️</div><h3>تقطيع الصوت</h3><p>قص أي ملف صوتي لمقاطع متساوية مع تحكم كامل في الصيغة والجودة.</p></div>
-      <div class="card"><div class="ic">🔊</div><h3>رفع مستوى الصوت</h3><p>ميزة Gain تقوّي الصوت قبل القص مع محدد يمنع التهشيش.</p></div>
-      <div class="card"><div class="ic">⚡</div><h3>سرعة عالية</h3><p>كود مُجمّع ومحمي (Native) لأداء سريع وبدون فتح الكود.</p></div>
-      <div class="card"><div class="ic">🔄</div><h3>تحديث تلقائي</h3><p>البرنامج يفحص التحديثات وتنزل ويتم تثبيتها من غير ما تفتح المتصفح.</p></div>
-      <div class="card"><div class="ic">🤝</div><h3>دعم مباشر</h3><p>فريق دعم على تيليجرام بأي وقت للمساعدة في التثبيت والاستخدام.</p></div>
+      <div class="card"><div class="ic">📦</div><h3 data-i18n="f1t">Product extractor</h3><p data-i18n="f1d">Pull IMVU products with original files and inherited assets at full quality.</p></div>
+      <div class="card"><div class="ic">✂️</div><h3 data-i18n="f2t">Audio splitter</h3><p data-i18n="f2d">Cut any audio file into equal segments with full control over format and quality.</p></div>
+      <div class="card"><div class="ic">🔊</div><h3 data-i18n="f3t">Volume boost</h3><p data-i18n="f3d">Gain feature that raises loudness before splitting, with a limiter to prevent clipping.</p></div>
+      <div class="card"><div class="ic">⚡</div><h3 data-i18n="f4t">High speed</h3><p data-i18n="f4d">Compiled, protected binary for fast performance and closed-source safety.</p></div>
+      <div class="card"><div class="ic">🔄</div><h3 data-i18n="f5t">Auto updates</h3><p data-i18n="f5d">The app checks for updates and installs them without touching your browser.</p></div>
+      <div class="card"><div class="ic">🤝</div><h3 data-i18n="f6t">Direct support</h3><p data-i18n="f6d">Dedicated support team to help with installation and usage.</p></div>
     </div>
   </div>
 </section>
@@ -197,29 +206,29 @@
 <section id="versions">
   <div class="wrap">
     <div class="sec-head">
-      <h2>كل الإصدارات</h2>
-      <p>القائمة بتحدث تلقائياً — اضغط تحميل مباشر لأي نسخة</p>
+      <h2 data-i18n="ver_h2">All versions</h2>
+      <p data-i18n="ver_sub">The list updates automatically — click direct download for any version</p>
     </div>
-    <div id="verTable"><div class="loading">⏳ جاري تحميل قائمة الإصدارات…</div></div>
+    <div id="verTable"><div class="loading"><span data-i18n="ver_load">Loading versions list…</span></div></div>
   </div>
 </section>
 
 <section id="support">
   <div class="wrap">
     <div class="sec-head">
-      <h2>الدعم والشراء</h2>
-      <p>خدمة سريعة عبر بوت التيليجرام الرسمي</p>
+      <h2 data-i18n="sup_h2">Support &amp; purchase</h2>
+      <p data-i18n="sup_sub">Fast service through the official channels</p>
     </div>
     <div class="grid g2">
       <a class="card s-card" href="https://t.me/JM_license_bot?text=%2Fstart%20buy" target="_blank" rel="noopener">
         <div class="s-ic">🛒</div>
-        <div><h3>شراء الترخيص</h3><p>ابدأ محادثة مع بوت الترخيص وأكمل الشراء مباشرة</p></div>
-        <span class="s-btn">ابدأ الشراء ←</span>
+        <div><h3 data-i18n="sup1t">Buy a license</h3><p data-i18n="sup1d">Start a conversation to get your license key</p></div>
+        <span class="s-btn" data-i18n="sup1b">Start purchase →</span>
       </a>
       <a class="card s-card" href="https://t.me/JM_license_bot?text=%2Fstart%20support" target="_blank" rel="noopener">
         <div class="s-ic">🎧</div>
-        <div><h3>الدعم الفني</h3><p>مشكلة في التثبيت أو الأداء؟ تواصل مع فريق الدعم</p></div>
-        <span class="s-btn">تواصل الآن ←</span>
+        <div><h3 data-i18n="sup2t">Technical support</h3><p data-i18n="sup2d">Installation or performance issue? Contact support</p></div>
+        <span class="s-btn" data-i18n="sup2b">Contact now →</span>
       </a>
     </div>
   </div>
@@ -228,23 +237,23 @@
 <section id="faq">
   <div class="wrap">
     <div class="sec-head">
-      <h2>أسئلة شائعة</h2>
+      <h2 data-i18n="faq_h2">Frequently asked questions</h2>
     </div>
     <details>
-      <summary>مينفعش التحميل؟ الموقع بيقول الملف كبير</summary>
-      <p>الملف حجمه تقريباً 83 ميغابايت لأنه بيشمل كل المكتبات وffmpeg داخلياً، فيشتغل على أي جهاز من غير تثبيت إضافات. لو التحميل واقف، جرّب من متصفح آخر أو شبكة مختلفة.</p>
+      <summary data-i18n="q1t">The download is blocked / the file looks too big. Why?</summary>
+      <p data-i18n="q1d">The file is about 83 MB because it bundles all libraries and FFmpeg internally, so it runs on any machine with no extra installs. If the download stops, try another browser or a different network.</p>
     </details>
     <details>
-      <summary>هل البرنامج محتاج إنترنت أو حساب خاص؟</summary>
-      <p>البرنامج شغال أوفلاين بالكامل باستثناء الترقيم/التحقق من الترخيص، وفحص التحديثات بشكل دوري.</p>
+      <summary data-i18n="q2t">Does the app need internet or a special account?</summary>
+      <p data-i18n="q2d">The app works fully offline, except for license activation/checks and periodic update checks.</p>
     </details>
     <details>
-      <summary>لو جاني تحديث جديد إزاي؟</summary>
-      <p>البرنامج بيفحص التحديثات تلقائياً، وأول ما النسخة الجديدة تتطرح هتلاقي تنبيه داخل البرنامج وتنزيلها وتثبيتها مباشر.</p>
+      <summary data-i18n="q3t">How do I get a new version?</summary>
+      <p data-i18n="q3d">The app checks for updates automatically. As soon as a new version is released, you will see a notification inside the app and can download and install it directly.</p>
     </details>
     <details>
-      <summary>ويندوز بيحذر من ملف مجهول — أعمل إيه؟</summary>
-      <p>لأن الملف مش موقّع بشهادة دفع سنوية، ممكن يظهر تحذير Smartscreen. دوس "معلومات أكثر ← تشغيل على أي حال" — الملف سليم 100%.</p>
+      <summary data-i18n="q4t">Windows shows an “unknown publisher” warning — what do I do?</summary>
+      <p data-i18n="q4d">Because the file is not signed with a paid certificate, SmartScreen may warn. Click “More info → Run anyway” — the file is 100% safe.</p>
     </details>
   </div>
 </section>
@@ -252,8 +261,8 @@
 <footer>
   <div class="wrap">
     <div class="brand">JM — IMVU Product Extractor</div>
-    <p style="margin-top:6px">© <span id="year"></span> JM Tools · جميع الحقوق محفوظة</p>
-    <p style="margin-top:4px;font-size:12.5px">JM غير تابع لـ IMVU™ — أداة خاصة لأصحاب الرخص فقط</p>
+    <p style="margin-top:6px">© <span id="year"></span> JM Tools<span data-i18n="foot_rights"> · All rights reserved</span></p>
+    <p style="margin-top:4px;font-size:12.5px" data-i18n="foot_note">JM is not affiliated with IMVU™ — a private tool for licensed users only</p>
   </div>
 </footer>
 
@@ -261,6 +270,108 @@
   const REPO = "jmtools-store/jm";
   const LATEST_URL = "https://github.com/jmtools-store/jm/releases/latest/download/JM_Setup.exe";
 
+  const I18N = {
+    en: {
+      nav_features:"Features", nav_versions:"Versions", nav_support:"Support", nav_faq:"FAQ",
+      nav_dl:"Download now",
+      pill_latest:"Runs on the latest version",
+      hero_h1:"Extract IMVU products and full pro audio tools — one click, and job done",
+      hero_sub:"JM is a complete Windows tool: it extracts IMVU products with their original files, splits audio with precise quality control, and boosts volume in one click. Fast, protected, with automatic updates built in.",
+      dl_latest:"Download latest version",
+      dl_note1:"File:", dl_note2:"— full setup wizard · Windows 10 / 11 64-bit",
+      chip_versions:"Available versions:", chip_updates:"Automatic in-app updates",
+      chip_protected:"Protected build", chip_ui:"Modern dark UI",
+      feat_h2:"Why choose", feat_sub:"Everything you need in a single tool, designed for speed and stability",
+      f1t:"Product extractor", f1d:"Pull IMVU products with original files and inherited assets at full quality.",
+      f2t:"Audio splitter", f2d:"Cut any audio file into equal segments with full control over format and quality.",
+      f3t:"Volume boost", f3d:"Gain feature that raises loudness before splitting, with a limiter to prevent clipping.",
+      f4t:"High speed", f4d:"Compiled, protected binary for fast performance and closed-source safety.",
+      f5t:"Auto updates", f5d:"The app checks for updates and installs them without touching your browser.",
+      f6t:"Direct support", f6d:"Dedicated support team to help with installation and usage.",
+      ver_h2:"All versions", ver_sub:"The list updates automatically — click direct download for any version",
+      ver_load:"Loading versions list…", ver_err:"Couldn't load the release list right now.",
+      ver_th_version:"Version", ver_th_date:"Date", ver_th_size:"Size", ver_th_dl:"Download",
+      ver_latest:"Latest", ver_dl:"Direct download", ver_view:"View release",
+      sup_h2:"Support & purchase", sup_sub:"Fast service through the official channels",
+      sup1t:"Buy a license", sup1d:"Start a conversation to get your license key", sup1b:"Start purchase →",
+      sup2t:"Technical support", sup2d:"Installation or performance issue? Contact support", sup2b:"Contact now →",
+      faq_h2:"Frequently asked questions",
+      q1t:"The download is blocked / the file looks too big. Why?",
+      q1d:"The file is about 83 MB because it bundles all libraries and FFmpeg internally, so it runs on any machine with no extra installs. If the download stops, try another browser or a different network.",
+      q2t:"Does the app need internet or a special account?",
+      q2d:"The app works fully offline, except for license activation/checks and periodic update checks.",
+      q3t:"How do I get a new version?",
+      q3d:"The app checks for updates automatically. As soon as a new version is released, you will see a notification inside the app and can download and install it directly.",
+      q4t:"Windows shows an “unknown publisher” warning — what do I do?",
+      q4d:"Because the file is not signed with a paid certificate, SmartScreen may warn. Click “More info → Run anyway” — the file is 100% safe.",
+      foot_rights:" · All rights reserved",
+      foot_note:"JM is not affiliated with IMVU™ — a private tool for licensed users only"
+    },
+    ar: {
+      nav_features:"المميزات", nav_versions:"الإصدارات", nav_support:"الدعم", nav_faq:"الأسئلة",
+      nav_dl:"تحميل الآن",
+      pill_latest:"يعمل على أحدث نسخة",
+      hero_h1:"استخرج منتجات IMVU الأصلية وأدوات صوت احترافية — بنقرة واحدة",
+      hero_sub:"JM أداة ويندوز كاملة: استخراج منتجات IMVU مع الملفات الأصلية، تقطيع الصوت بجودة مضبوطة، ورفع مستوى الصوت بضغطة. سريعة، محمية، وتحديثات تلقائية داخل البرنامج.",
+      dl_latest:"تحميل أحدث إصدار",
+      dl_note1:"الملف:", dl_note2:"— معالج تثبيت كامل · ويندوز 10 / 11 64-bit",
+      chip_versions:"إصدارات متاحة:", chip_updates:"تحديثات تلقائية داخل البرنامج",
+      chip_protected:"حماية النسخ من العبث", chip_ui:"واجهة عربية مظلمة",
+      feat_h2:"ليه تختار", feat_sub:"كل اللي محتاجه في أداة واحدة، مصممة لتجربة سريعة ومستقرة",
+      f1t:"استخراج المنتجات", f1d:"سحب منتجات IMVU مع الملفات الأصلية والموارد الموروثة بجودة كاملة.",
+      f2t:"تقطيع الصوت", f2d:"قص أي ملف صوتي لمقاطع متساوية مع تحكم كامل في الصيغة والجودة.",
+      f3t:"رفع مستوى الصوت", f3d:"ميزة Gain تقوّي الصوت قبل القص مع محدد يمنع التهشيش.",
+      f4t:"سرعة عالية", f4d:"كود مُجمّع ومحمي (Native) لأداء سريع وبدون فتح الكود.",
+      f5t:"تحديث تلقائي", f5d:"البرنامج يفحص التحديثات وتنزل ويتم تثبيتها من غير ما تفتح المتصفح.",
+      f6t:"دعم مباشر", f6d:"فريق دعم على تيليجرام بأي وقت للمساعدة في التثبيت والاستخدام.",
+      ver_h2:"كل الإصدارات", ver_sub:"القائمة بتحدث تلقائياً — اضغط تحميل مباشر لأي نسخة",
+      ver_load:"جاري تحميل قائمة الإصدارات…", ver_err:"مش قادرين نجيب قائمة الإصدارات دلوقتي.",
+      ver_th_version:"الإصدار", ver_th_date:"التاريخ", ver_th_size:"الحجم", ver_th_dl:"تحميل",
+      ver_latest:"الأحدث", ver_dl:"تحميل مباشر", ver_view:"عرض الإصدار",
+      sup_h2:"الدعم والشراء", sup_sub:"خدمة سريعة عبر القنوات الرسمية",
+      sup1t:"شراء الترخيص", sup1d:"ابدأ محادثة للحصول على مفتاح الترخيص", sup1b:"ابدأ الشراء ←",
+      sup2t:"الدعم الفني", sup2d:"مشكلة في التثبيت أو الأداء؟ تواصل مع الدعم", sup2b:"تواصل الآن ←",
+      faq_h2:"أسئلة شائعة",
+      q1t:"مينفعش التحميل؟ الموقع بيقول الملف كبير",
+      q1d:"الملف حجمه تقريباً 83 ميغابايت لأنه بيشمل كل المكتبات وffmpeg داخلياً، فيشتغل على أي جهاز من غير تثبيت إضافات. لو التحميل واقف، جرّب من متصفح آخر أو شبكة مختلفة.",
+      q2t:"هل البرنامج محتاج إنترنت أو حساب خاص؟",
+      q2d:"البرنامج شغال أوفلاين بالكامل باستثناء الترقيم/التحقق من الترخيص، وفحص التحديثات بشكل دوري.",
+      q3t:"لو جاني تحديث جديد إزاي؟",
+      q3d:"البرنامج بيفحص التحديثات تلقائياً، وأول ما النسخة الجديدة تتطرح هتلاقي تنبيه داخل البرنامج وتنزيلها وتثبيتها مباشر.",
+      q4t:"ويندوز بيحذر من ملف مجهول — أعمل إيه؟",
+      q4d:"لأن الملف مش موقّع بشهادة دفع سنوية، ممكن يظهر تحذير Smartscreen. دوس \"معلومات أكثر ← تشغيل على أي حال\" — الملف سليم 100%.",
+      foot_rights:" · جميع الحقوق محفوظة",
+      foot_note:"JM غير تابع لـ IMVU™ — أداة خاصة لأصحاب الرخص فقط"
+    }
+  };
+
+  let curLang = "en";
+
+  function applyLang(lang){
+    curLang = lang;
+    const t = I18N[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.title = lang === "ar"
+      ? "JM — IMVU Product Extractor | التحميل"
+      : "JM — IMVU Product Extractor | Download";
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.getElementById("langBtn").textContent = lang === "ar" ? "English" : "العربية";
+  }
+
+  function setLang(lang){
+    try{ localStorage.setItem("jm_lang", lang); }catch(e){}
+    applyLang(lang);
+  }
+
+  document.getElementById("langBtn").addEventListener("click", () => {
+    setLang(curLang === "ar" ? "en" : "ar");
+  });
+
+  /* ---------- versions table ---------- */
   function fmtSize(b){
     if(!b) return "";
     const mb = b / (1024*1024);
@@ -268,8 +379,10 @@
   }
   function fmtDate(s){
     if(!s) return "";
-    try{ return new Date(s).toLocaleDateString("ar-EG",{year:"numeric",month:"short",day:"numeric"}); }
-    catch(e){ return s.slice(0,10); }
+    try{
+      const loc = curLang === "ar" ? "ar-EG" : "en-US";
+      return new Date(s).toLocaleDateString(loc,{year:"numeric",month:"short",day:"numeric"});
+    }catch(e){ return s.slice(0,10); }
   }
 
   async function loadReleases(){
@@ -277,6 +390,7 @@
     const badge = document.getElementById("latestBadge");
     const latestVer = document.getElementById("latestVer");
     const count = document.getElementById("verCount");
+    const t = () => I18N[curLang];
     try{
       const r = await fetch("https://api.github.com/repos/" + REPO + "/releases?per_page=50", {headers:{Accept:"application/vnd.github+json"}});
       if(!r.ok) throw new Error("HTTP " + r.status);
@@ -291,39 +405,43 @@
           : "https://github.com/" + REPO + "/releases/tag/" + re.tag_name;
         return `<tr>
           <td><span class="vtag">${re.tag_name}</span>
-               ${re.tag_name === list[0].tag_name ? '<span class="tag-chip">الأحدث</span>' : ''}</td>
+               ${re.tag_name === list[0].tag_name ? '<span class="tag-chip">' + t().ver_latest + '</span>' : ''}</td>
           <td class="tdate">${fmtDate(re.published_at)}</td>
           <td class="tsize">${asset ? fmtSize(asset.size) : "—"}</td>
-          <td>${asset ? `<a class="tdl" href="${url}">⬇ تحميل مباشر</a>` : `<a class="tdl" href="${url}">عرض الإصدار</a>`}</td>
+          <td>${asset ? `<a class="tdl" href="${url}">⬇ ${t().ver_dl}</a>` : `<a class="tdl" href="${url}">${t().ver_view}</a>`}</td>
         </tr>`;
       }).join("");
 
       wrap.innerHTML = `<table class="tbl"><thead><tr>
-          <th>الإصدار</th><th>التاريخ</th><th>الحجم</th><th>تحميل</th>
+          <th>${t().ver_th_version}</th><th>${t().ver_th_date}</th><th>${t().ver_th_size}</th><th>${t().ver_th_dl}</th>
         </tr></thead><tbody>${rows}</tbody></table>`;
 
       const v = list[0].tag_name.replace(/^v/i,"");
       if(badge) badge.textContent = "(" + v + ")";
       if(latestVer) latestVer.textContent = "v" + v;
       if(count) count.textContent = list.length;
-      document.title = "JM — IMVU Product Extractor · v" + v + " | التحميل";
+      document.title = curLang === "ar"
+        ? "JM — IMVU Product Extractor · v" + v + " | التحميل"
+        : "JM — IMVU Product Extractor · v" + v + " | Download";
     }catch(e){
-      wrap.innerHTML = `<div class="loading" style="display:none"></div>`;
       const rows = `<table class="tbl"><thead><tr>
-          <th>الإصدار</th><th>الحجم</th><th>تحميل</th>
+          <th>${t().ver_th_version}</th><th>${t().ver_th_size}</th><th>${t().ver_th_dl}</th>
         </tr></thead><tbody>
-        <tr><td><span class="vtag">v1.0.4</span><span class="tag-chip">الأحدث</span></td>
+        <tr><td><span class="vtag">v1.0.4</span><span class="tag-chip">${t().ver_latest}</span></td>
             <td class="tsize">83.1 MB</td>
-            <td><a class="tdl" href="${LATEST_URL}">⬇ تحميل مباشر</a></td></tr>
+            <td><a class="tdl" href="${LATEST_URL}">⬇ ${t().ver_dl}</a></td></tr>
         </tbody></table>`;
-      wrap.innerHTML = rows;
+      wrap.innerHTML = '<div class="loading-err">' + t().ver_err + '</div>' + rows;
       if(badge) badge.textContent = "(v1.0.4)";
       if(latestVer) latestVer.textContent = "v1.0.4";
       if(count) count.textContent = "1+";
     }
   }
 
+  /* ---------- init ---------- */
   document.getElementById("year").textContent = new Date().getFullYear();
+  try{ const saved = localStorage.getItem("jm_lang"); if (saved === "ar" || saved === "en") curLang = saved; }catch(e){}
+  applyLang(curLang);
   loadReleases();
 </script>
 </body>
