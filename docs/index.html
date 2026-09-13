@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JM — IMVU Product Extractor | التحميل</title>
+<meta name="description" content="JM — أداة استخراج منتجات IMVU الأصلية وتقطيع الصوت ورفع مستواه. تحميل مباشر لكل الإصدارات.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-family='Segoe UI,Arial' font-size='30' font-weight='800' fill='white' text-anchor='middle'%3EJM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0d16; --bg2:#0e1220; --card:rgba(255,255,255,.045);
+    --card2:rgba(255,255,255,.075); --line:rgba(255,255,255,.08);
+    --txt:#eef1ff; --muted:#9aa3c0; --accent:#6366f1; --accent2:#a855f7;
+    --ok:#34d399; --warn:#fbbf24;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Cairo',Tahoma,sans-serif;background:var(--bg);color:var(--txt);
+    line-height:1.7;overflow-x:hidden;
+    background-image:
+      radial-gradient(900px 500px at 85% -10%, rgba(99,102,241,.22), transparent 60%),
+      radial-gradient(800px 500px at 0% 10%, rgba(168,85,247,.16), transparent 60%),
+      radial-gradient(700px 600px at 50% 120%, rgba(99,102,241,.10), transparent 60%);
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+      background:rgba(10,13,22,.78);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px}
+  .logo .mark{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));font-size:15px;letter-spacing:1px}
+  .nav-links{display:flex;gap:26px;color:var(--muted);font-weight:600;font-size:14.5px}
+  .nav-links a:hover{color:var(--txt)}
+  .nav-cta{padding:9px 18px;border-radius:10px;font-weight:700;font-size:14px;
+     background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:84px 0 60px;text-align:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:99px;
+      background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.35);color:var(--ok);
+      font-size:13.5px;font-weight:700}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  h1{font-size:clamp(30px,5.4vw,54px);font-weight:900;line-height:1.25;margin:22px 0 14px}
+  h1 .grad{background:linear-gradient(90deg,#818cf8,#c084fc);-webkit-background-clip:text;
+      background-clip:text;color:transparent}
+  .sub{color:var(--muted);font-size:clamp(15px,2vw,18px);max-width:640px;margin:0 auto 34px}
+
+  .btn-dl{position:relative;display:inline-flex;align-items:center;gap:14px;padding:18px 44px;
+      border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+      font-size:19px;font-weight:900;box-shadow:0 20px 50px -12px rgba(124,58,237,.55);
+      transition:transform .18s,box-shadow .25s}
+  .btn-dl:hover{transform:translateY(-3px);box-shadow:0 26px 60px -12px rgba(124,58,237,.75)}
+  .btn-dl .sz{font-size:13px;font-weight:600;opacity:.85}
+  .btn-dl svg{width:26px;height:26px}
+  .dl-note{margin-top:16px;color:var(--muted);font-size:13.5px}
+  .dl-note b{color:var(--txt)}
+
+  .hero-meta{margin-top:38px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:12px;
+      background:var(--card);border:1px solid var(--line);font-size:13.5px;color:var(--muted);font-weight:600}
+  .chip b{color:var(--txt)}
+
+  /* ---------- sections ---------- */
+  section{padding:64px 0}
+  .sec-head{text-align:center;margin-bottom:42px}
+  .sec-head h2{font-size:clamp(24px,3.4vw,34px);font-weight:900}
+  .sec-head p{color:var(--muted);margin-top:8px;font-size:15px}
+
+  .grid{display:grid;gap:18px}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;
+      transition:transform .18s,border-color .2s,background .2s}
+  .card:hover{transform:translateY(-4px);border-color:rgba(129,140,248,.45);background:var(--card2)}
+  .card .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;
+      background:linear-gradient(135deg,rgba(99,102,241,.22),rgba(168,85,247,.22));font-size:22px}
+  .card h3{font-size:17px;font-weight:800;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:14px}
+
+  /* ---------- versions ---------- */
+  .tbl{width:100%;border-collapse:collapse;border-radius:16px;overflow:hidden;
+      background:var(--card);border:1px solid var(--line)}
+  .tbl th,.tbl td{padding:15px 18px;text-align:right;font-size:14.5px;border-bottom:1px solid var(--line)}
+  .tbl th{background:rgba(255,255,255,.04);color:var(--muted);font-weight:700;font-size:13px}
+  .tbl tr:last-child td{border-bottom:0}
+  .tbl tr:hover td{background:rgba(255,255,255,.03)}
+  .vtag{font-weight:900;color:#c7cbfa}
+  .tag-chip{display:inline-block;padding:3px 10px;border-radius:99px;background:rgba(52,211,153,.12);
+      border:1px solid rgba(52,211,153,.3);color:var(--ok);font-weight:700;font-size:12px;margin-right:8px}
+  .tdl{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:10px;font-weight:800;
+      font-size:13.5px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+      white-space:nowrap;transition:opacity .15s}
+  .tdl:hover{opacity:.85}
+  .tsize{color:var(--muted);font-size:13px}
+  .tdate{color:var(--muted);font-size:13.5px}
+  .loading{text-align:center;color:var(--muted);padding:30px;font-size:14.5px}
+
+  /* ---------- support ---------- */
+  .s-card{display:flex;gap:18px;align-items:center;padding:22px 24px}
+  .s-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:26px;flex-shrink:0;
+      background:linear-gradient(135deg,rgba(56,189,248,.2),rgba(99,102,241,.2))}
+  .s-card h3{font-size:17px;font-weight:800}
+  .s-card p{color:var(--muted);font-size:13.5px;margin-top:2px}
+  .s-btn{margin-inline-start:auto;padding:10px 20px;border-radius:11px;font-weight:800;font-size:14px;
+       background:rgba(56,189,248,.14);border:1px solid rgba(56,189,248,.4);color:#7dd3fc;white-space:nowrap}
+
+  /* ---------- faq ---------- */
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px}
+  summary{cursor:pointer;font-weight:800;font-size:15.5px;display:flex;align-items:center;gap:10px}
+  summary::before{content:"+";color:var(--accent2);font-size:20px;font-weight:900}
+  details[open] summary::before{content:"−"}
+  details p{color:var(--muted);font-size:14px;margin-top:12px;padding-right:30px}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:38px 0;text-align:center;color:var(--muted);font-size:13.5px}
+  footer .brand{color:var(--txt);font-weight:900;font-size:15px}
+  .vmsg{display:none}
+
+  @media(max-width:760px){
+    nav{position:static}
+    .nav-links{display:none}
+    header.hero{padding:54px 0 40px}
+    .btn-dl{width:100%;justify-content:center}
+    .s-btn{width:100%;text-align:center;margin:12px 0 0}
+    .s-card{flex-direction:column;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="logo"><span class="mark">JM</span> JM Extractor</div>
+    <div class="nav-links">
+      <a href="#features">المميزات</a>
+      <a href="#versions">الإصدارات</a>
+      <a href="#support">الدعم</a>
+      <a href="#faq">الأسئلة</a>
+    </div>
+    <a class="nav-cta" href="https://github.com/jmtools-store/jm/releases/latest/download/JM_Setup.exe">
+      تحميل الآن
+    </a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="pill"><span class="dot"></span> يعمل على أحدث نسخة <span id="latestBadge"></span></span>
+    <h1>استخرج منتجات IMVU الأصلية<br>وأدوات صوت احترافية — <span class="grad">بنقرة واحدة</span></h1>
+    <p class="sub">
+      JM أداة ويندوز كاملة: استخراج منتجات IMVU مع الملفات الأصلية، تقطيع الصوت بجودة مضبوطة،
+      ورفع مستوى الصوت بضغطة. سريعة، محمية، وتحديثات تلقائية داخل البرنامج.
+    </p>
+    <div>
+      <a class="btn-dl" href="https://github.com/jmtools-store/jm/releases/latest/download/JM_Setup.exe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>تحميل أحدث إصدار <span id="latestVer" class="sz"></span></span>
+      </a>
+    </div>
+    <div class="dl-note">الملف: <b>JM_Setup.exe</b> — معالج تثبيت كامل · تدعم ويندوز 10 / 11 64-bit</div>
+
+    <div class="hero-meta">
+      <span class="chip">📦 إصدارات متاحة: <b><span id="verCount">—</span></b></span>
+      <span class="chip">🔄 تحديثات تلقائية داخل البرنامج</span>
+      <span class="chip">🔒 حماية النسخ من العبث</span>
+      <span class="chip">🌙 واجهة عربية مظلمة</span>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>ليه تختار <span class="grad">JM</span>؟</h2>
+      <p>كل اللي محتاجه في أداة واحدة، مصممة لتجربة سريعة ومستقرة</p>
+    </div>
+    <div class="grid g3">
+      <div class="card"><div class="ic">📦</div><h3>استخراج المنتجات</h3><p>سحب منتجات IMVU مع الملفات الأصلية والموارد الموروثة بجودة كاملة.</p></div>
+      <div class="card"><div class="ic">✂️</div><h3>تقطيع الصوت</h3><p>قص أي ملف صوتي لمقاطع متساوية مع تحكم كامل في الصيغة والجودة.</p></div>
+      <div class="card"><div class="ic">🔊</div><h3>رفع مستوى الصوت</h3><p>ميزة Gain تقوّي الصوت قبل القص مع محدد يمنع التهشيش.</p></div>
+      <div class="card"><div class="ic">⚡</div><h3>سرعة عالية</h3><p>كود مُجمّع ومحمي (Native) لأداء سريع وبدون فتح الكود.</p></div>
+      <div class="card"><div class="ic">🔄</div><h3>تحديث تلقائي</h3><p>البرنامج يفحص التحديثات وتنزل ويتم تثبيتها من غير ما تفتح المتصفح.</p></div>
+      <div class="card"><div class="ic">🤝</div><h3>دعم مباشر</h3><p>فريق دعم على تيليجرام بأي وقت للمساعدة في التثبيت والاستخدام.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="versions">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>كل الإصدارات</h2>
+      <p>القائمة بتحدث تلقائياً — اضغط تحميل مباشر لأي نسخة</p>
+    </div>
+    <div id="verTable"><div class="loading">⏳ جاري تحميل قائمة الإصدارات…</div></div>
+  </div>
+</section>
+
+<section id="support">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>الدعم والشراء</h2>
+      <p>خدمة سريعة عبر بوت التيليجرام الرسمي</p>
+    </div>
+    <div class="grid g2">
+      <a class="card s-card" href="https://t.me/JM_license_bot?text=%2Fstart%20buy" target="_blank" rel="noopener">
+        <div class="s-ic">🛒</div>
+        <div><h3>شراء الترخيص</h3><p>ابدأ محادثة مع بوت الترخيص وأكمل الشراء مباشرة</p></div>
+        <span class="s-btn">ابدأ الشراء ←</span>
+      </a>
+      <a class="card s-card" href="https://t.me/JM_license_bot?text=%2Fstart%20support" target="_blank" rel="noopener">
+        <div class="s-ic">🎧</div>
+        <div><h3>الدعم الفني</h3><p>مشكلة في التثبيت أو الأداء؟ تواصل مع فريق الدعم</p></div>
+        <span class="s-btn">تواصل الآن ←</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>أسئلة شائعة</h2>
+    </div>
+    <details>
+      <summary>مينفعش التحميل؟ الموقع بيقول الملف كبير</summary>
+      <p>الملف حجمه تقريباً 83 ميغابايت لأنه بيشمل كل المكتبات وffmpeg داخلياً، فيشتغل على أي جهاز من غير تثبيت إضافات. لو التحميل واقف، جرّب من متصفح آخر أو شبكة مختلفة.</p>
+    </details>
+    <details>
+      <summary>هل البرنامج محتاج إنترنت أو حساب خاص؟</summary>
+      <p>البرنامج شغال أوفلاين بالكامل باستثناء الترقيم/التحقق من الترخيص، وفحص التحديثات بشكل دوري.</p>
+    </details>
+    <details>
+      <summary>لو جاني تحديث جديد إزاي؟</summary>
+      <p>البرنامج بيفحص التحديثات تلقائياً، وأول ما النسخة الجديدة تتطرح هتلاقي تنبيه داخل البرنامج وتنزيلها وتثبيتها مباشر.</p>
+    </details>
+    <details>
+      <summary>ويندوز بيحذر من ملف مجهول — أعمل إيه؟</summary>
+      <p>لأن الملف مش موقّع بشهادة دفع سنوية، ممكن يظهر تحذير Smartscreen. دوس "معلومات أكثر ← تشغيل على أي حال" — الملف سليم 100%.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">JM — IMVU Product Extractor</div>
+    <p style="margin-top:6px">© <span id="year"></span> JM Tools · جميع الحقوق محفوظة</p>
+    <p style="margin-top:4px;font-size:12.5px">JM غير تابع لـ IMVU™ — أداة خاصة لأصحاب الرخص فقط</p>
+  </div>
+</footer>
+
+<script>
+  const REPO = "jmtools-store/jm";
+  const LATEST_URL = "https://github.com/jmtools-store/jm/releases/latest/download/JM_Setup.exe";
+
+  function fmtSize(b){
+    if(!b) return "";
+    const mb = b / (1024*1024);
+    return (mb >= 1024 ? (mb/1024).toFixed(2)+" GB" : mb.toFixed(1)+" MB");
+  }
+  function fmtDate(s){
+    if(!s) return "";
+    try{ return new Date(s).toLocaleDateString("ar-EG",{year:"numeric",month:"short",day:"numeric"}); }
+    catch(e){ return s.slice(0,10); }
+  }
+
+  async function loadReleases(){
+    const wrap = document.getElementById("verTable");
+    const badge = document.getElementById("latestBadge");
+    const latestVer = document.getElementById("latestVer");
+    const count = document.getElementById("verCount");
+    try{
+      const r = await fetch("https://api.github.com/repos/" + REPO + "/releases?per_page=50", {headers:{Accept:"application/vnd.github+json"}});
+      if(!r.ok) throw new Error("HTTP " + r.status);
+      const list = await r.json();
+      if(!list.length) throw new Error("no releases");
+
+      const rows = list.map(re => {
+        const asset = (re.assets || []).find(a => a.name.toLowerCase() === "jm_setup.exe")
+                   || (re.assets || [])[0];
+        const url = asset
+          ? asset.browser_download_url
+          : "https://github.com/" + REPO + "/releases/tag/" + re.tag_name;
+        return `<tr>
+          <td><span class="vtag">${re.tag_name}</span>
+               ${re.tag_name === list[0].tag_name ? '<span class="tag-chip">الأحدث</span>' : ''}</td>
+          <td class="tdate">${fmtDate(re.published_at)}</td>
+          <td class="tsize">${asset ? fmtSize(asset.size) : "—"}</td>
+          <td>${asset ? `<a class="tdl" href="${url}">⬇ تحميل مباشر</a>` : `<a class="tdl" href="${url}">عرض الإصدار</a>`}</td>
+        </tr>`;
+      }).join("");
+
+      wrap.innerHTML = `<table class="tbl"><thead><tr>
+          <th>الإصدار</th><th>التاريخ</th><th>الحجم</th><th>تحميل</th>
+        </tr></thead><tbody>${rows}</tbody></table>`;
+
+      const v = list[0].tag_name.replace(/^v/i,"");
+      if(badge) badge.textContent = "(" + v + ")";
+      if(latestVer) latestVer.textContent = "v" + v;
+      if(count) count.textContent = list.length;
+      document.title = "JM — IMVU Product Extractor · v" + v + " | التحميل";
+    }catch(e){
+      wrap.innerHTML = `<div class="loading" style="display:none"></div>`;
+      const rows = `<table class="tbl"><thead><tr>
+          <th>الإصدار</th><th>الحجم</th><th>تحميل</th>
+        </tr></thead><tbody>
+        <tr><td><span class="vtag">v1.0.4</span><span class="tag-chip">الأحدث</span></td>
+            <td class="tsize">83.1 MB</td>
+            <td><a class="tdl" href="${LATEST_URL}">⬇ تحميل مباشر</a></td></tr>
+        </tbody></table>`;
+      wrap.innerHTML = rows;
+      if(badge) badge.textContent = "(v1.0.4)";
+      if(latestVer) latestVer.textContent = "v1.0.4";
+      if(count) count.textContent = "1+";
+    }
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  loadReleases();
+</script>
+</body>
+</html>
