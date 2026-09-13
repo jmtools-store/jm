@@ -541,6 +541,7 @@
   function setLang(lang){
     try{ localStorage.setItem("jm_lang", lang); }catch(e){}
     applyLang(lang);
+    try{ if (typeof Tawk_API !== "undefined" && Tawk_API.setLanguage) Tawk_API.setLanguage(lang); }catch(e){}
   }
 
   document.getElementById("langBtn").addEventListener("click", () => {
@@ -618,7 +619,21 @@
   document.getElementById("year").textContent = new Date().getFullYear();
   try{ const saved = localStorage.getItem("jm_lang"); if (saved === "ar" || saved === "en") curLang = saved; }catch(e){}
   applyLang(curLang);
+  try{ if (typeof Tawk_API === "undefined") window.Tawk_API = { onLoad: function(){ Tawk_API.setLanguage(curLang); } }; }catch(e){}
   loadReleases();
 </script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6aa64a489117af34473da008/1k2cp4ba4';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
