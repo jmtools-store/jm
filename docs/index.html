@@ -885,7 +885,6 @@
   function renderPlans(){
     const box = document.getElementById("buyPlans");
     if(!box) return;
-    const voda = curLang === "ar" ? "اطلب عبر فودافون كاش" : "Order via Vodafone Cash";
     box.innerHTML = PLANS.map(p => {
       const name = (curLang === "ar") ? p.ar : p.en;
       return `<div class="card plan-card">
@@ -894,7 +893,6 @@
         <div class="plan-price">$${p.price}</div>
         <div id="ppbtn-${p.id}" class="ppbtn" style="margin:12px 0"></div>
         <a href="javascript:void(0)" class="ord-afpay" onclick="openOrder('${p.id}');return false;" data-i18n="ord_afpay">Paid? Send your Device ID →</a>
-        <button type="button" class="buy-btn buy-btn2" onclick="openOrder('${p.id}');return false;">${voda}</button>
       </div>`;
     }).join("");
   }
