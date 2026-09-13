@@ -35,6 +35,7 @@
       background:rgba(10,13,22,.78);border-bottom:1px solid var(--line)}
   .nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:14px;flex-wrap:wrap}
   .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px}
+  .logo:hover{opacity:.9}
   .logo .mark{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
       background:linear-gradient(135deg,var(--accent),var(--accent2));font-size:15px;letter-spacing:1px}
   .nav-links{display:flex;gap:26px;color:var(--muted);font-weight:600;font-size:14.5px}
@@ -163,7 +164,7 @@
 
 <nav>
   <div class="wrap nav-in">
-    <div class="logo"><span class="mark">JM</span> JM Extractor</div>
+    <a class="logo" href="./" aria-label="JM Extractor home"><span class="mark">JM</span> JM Extractor</a>
     <div class="nav-links">
       <a href="#features" data-i18n="nav_features">Features</a>
       <a href="#versions" data-i18n="nav_versions">Versions</a>
