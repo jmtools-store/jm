@@ -152,6 +152,11 @@
   .tk-note{margin-top:12px;text-align:center;color:var(--muted);font-size:12.5px}
   .tk-ok{text-align:center;padding:22px 0;color:var(--ok);font-weight:800;font-size:15.5px}
   .tk-err{text-align:center;color:var(--warn);font-size:13px;margin-top:10px}
+  .ord-warn{color:var(--warn);font-size:12.5px;line-height:1.6}
+  .ord-how{margin:10px 0;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13.5px}
+  .ord-how summary{cursor:pointer;font-weight:700}
+  .ord-how ol{margin:8px 0 0 18px;color:var(--muted)}
+  .ord-afpay{display:block;text-align:center;color:#fbbf24;font-size:13px;font-weight:700;margin:6px 0;text-decoration:underline}
 
   /* ---------- buy section ---------- */
   .buy-card{display:flex;flex-direction:column}
@@ -493,8 +498,8 @@
   <div class="tk-box">
     <button type="button" class="tk-close" id="ordClose" aria-label="Close">✕</button>
     <div class="tk-ic">📲</div>
-    <h3 data-i18n="ord_t">Manual order — Vodafone Cash / PayPal</h3>
-    <p class="tk-sub" data-i18n="ord_sub">Transfer the amount to us, then fill this form with your Device ID — it becomes an order ticket in our inbox and we confirm and send the key.</p>
+    <h3 data-i18n="ord_t">Paid? Send your Device ID</h3>
+    <p class="tk-sub" data-i18n="ord_sub">Great — now send your Device ID, where to deliver the key (email / WhatsApp) and the payment reference from your receipt. It becomes an order ticket and we send your key.</p>
     <form id="ordForm" novalidate>
       <label for="ordName" data-i18n="ord_name">Your name</label>
       <input type="text" id="ordName" name="name" autocomplete="name" required>
@@ -514,8 +519,17 @@
         <option value="Vodafone Cash" data-i18n="ord_m1">Vodafone Cash</option>
         <option value="PayPal" data-i18n="ord_m2">PayPal</option>
       </select>
-      <label for="ordSender" data-i18n="ord_sender">Sender name / reference (exactly as it appears on the transfer)</label>
-      <input type="text" id="ordSender" name="sender">
+      <label for="ordSender" data-i18n="ord_sender">Payment reference — transaction ID from your receipt (or exact sender name)</label>
+      <input type="text" id="ordSender" name="sender" required>
+      <div class="tk-note ord-warn" data-i18n="ord_warn"></div>
+      <details class="ord-how">
+        <summary data-i18n="ord_how_t"></summary>
+        <ol>
+          <li data-i18n="ord_how_1"></li>
+          <li data-i18n="ord_how_2"></li>
+          <li data-i18n="ord_how_3"></li>
+        </ol>
+      </details>
       <button type="submit" class="tk-submit" id="ordSubmit" data-i18n="ord_btn">Send order</button>
       <div class="tk-note" data-i18n="ord_note">🕐 We reply within 1–6 hours · 24/7</div>
       <div class="tk-err" id="ordErr" hidden></div>
@@ -612,15 +626,22 @@
       nav_buy:"License",
       buy_h2:"Get a license", buy_sub:"One license, one machine — instant delivery after payment",
       buy_pay_t:"Secure payment via PayPal", buy_pay_d:"Payments happen on PayPal's secure page — your card details never touch our site. Money goes straight to our account, then we send your key.",
-      buy_pay_after:"After payment, the key is delivered on the details you enter.",
+      buy_pay_after:"After paying, fill in your Device ID and delivery details so we can send the key.",
       buy_voda_t:"Vodafone Cash — Egypt", buy_voda_d:"Transfer the amount to our Vodafone Cash wallet, then place the order with the exact sender name so we can confirm it.",
       buy_man_btn:"Place order", buy_man_after:"We reply within 1–6 hours · 24/7",
       ord_plan:"License plan", plan_m1:"1 Month", plan_m3:"3 Months", plan_m6:"6 Months", plan_y1:"1 Year",
-      ord_t:"Manual order — Vodafone Cash / PayPal",
-      ord_sub:"Transfer the amount to us, then fill this form with your Device ID — it becomes an order ticket in our inbox and we confirm and send the key.",
-      ord_name:"Your name", ord_contact:"Email / phone / Telegram", ord_device:"Device ID (from the app)",
+      ord_t:"Paid? Send your Device ID",
+      ord_sub:"Great — now send your Device ID, where to deliver the key (email / WhatsApp) and the payment reference from your receipt. It becomes an order ticket and we send your key.",
+      ord_name:"Your name", ord_contact:"Email / WhatsApp — where the key is delivered",
+      ord_device:"Device ID — press the Copy (📋) button next to it in the app",
       ord_method:"Payment method", ord_m1:"Vodafone Cash", ord_m2:"PayPal",
-      ord_sender:"Sender name / reference (exactly as it appears on the transfer)",
+      ord_sender:"Payment reference — transaction ID from your receipt (or exact sender name)",
+      ord_afpay:"Paid? Send your Device ID →",
+      ord_warn:"⚠️ We are not responsible if the Device ID is typed incorrectly. Always use the Copy (📋) button next to it in the app — never type it manually.",
+      ord_how_t:"💡 How do I find my Device ID?",
+      ord_how_1:"Open the JM app and look at the main window.",
+      ord_how_2:"Find the line “This device ID:” near the license status.",
+      ord_how_3:"Press the Copy (نسخ) button next to it — it copies automatically. Then paste it in the field above.",
       ord_btn:"Send order", ord_note:"🕐 We reply within 1–6 hours · 24/7",
       resp_line:"🕐 We reply within 1–6 hours · 24/7",
       nav_install:"Install",
@@ -689,15 +710,22 @@
       nav_buy:"الترخيص",
       buy_h2:"احصل على ترخيص", buy_sub:"ترخيص واحد لجهاز واحد — التوصيل فوراً بعد الدفع",
       buy_pay_t:"دفع آمن عبر باي بال", buy_pay_d:"الدفع بيتم في صفحة باي بال الرسمية الآمنة — بيانات كارتك مش بتوصلنا إطلاقاً. الفلوس بتوصل لحسابنا فوراً، وبعدين نبعثلك الكود.",
-      buy_pay_after:"جوه 1–6 ساعات الكود بيوصلك على البيانات اللي سجلتها.",
+      buy_pay_after:"بعد الدفع: سجّل معرف جهازك وتفاصيل التسليم عشان نبعثلك الكود.",
       buy_voda_t:"فودافون كاش — داخل مصر", buy_voda_d:"حوّل المبلغ لمحفظة فودافون كاش، واكتب بعدها اسم المُرسِل بالظبط في الفورمة عشان نأكد التحويل.",
       buy_man_btn:"طلّب من الفورمة", buy_man_after:"بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
       ord_plan:"باكة الترخيص", plan_m1:"شهر", plan_m3:"3 شهور", plan_m6:"6 شهور", plan_y1:"سنة",
-      ord_t:"طلب يدوي — فودافون كاش / باي بال",
-      ord_sub:"حوّل لنا المبلغ، وبعدين املأ الفورمة دي بمعرف جهازك — بتتحول لتذكرة طلب في إنبوكسنا وبنأكد ونرسل الكود.",
-      ord_name:"اسمك", ord_contact:"إيميل / موبايل / تيليجرام", ord_device:"معرف الجهاز (من التطبيق)",
+      ord_t:"تم الدفع؟ ابعث معرف الجهاز",
+      ord_sub:"ممتاز ✅ — ابعث معرف جهازك + وسيلة الاستلام (ايميل / واتساب) + رقم العملية من الإيصال. بتتحول تذكرة طلب وهنبعتلك الكود على اللي سجلته.",
+      ord_name:"اسمك", ord_contact:"الإيميل / الواتساب — اللي هيوصلك عليه الكود",
+      ord_device:"معرف الجهاز — استخدم زرار النسخ (📋) اللي جنبه في التطبيق",
       ord_method:"طريقة الدفع", ord_m1:"فودافون كاش", ord_m2:"باي بال",
-      ord_sender:"اسم المُرسِل / المرجع (بالظبط زي ما ظاهر على التحويل)",
+      ord_sender:"إثبات الدفع — رقم العملية من الإيصال (أو اسم المُرسِل بالظبط)",
+      ord_afpay:"تم الدفع؟ ابعث معرف جهازك ←",
+      ord_warn:"⚠️ مش هنكون مسؤولين عن كتابة معرف الجهاز بشكل خاطئ. اضمن نقل المعرف بزرار النسخ (📋) اللي جنبه في التطبيق — متكتبش الرقم يدوي.",
+      ord_how_t:"💡 إزاي أجيب معرف الجهاز؟",
+      ord_how_1:"افتح تطبيق JM واتفرج على النافذة الرئيسية.",
+      ord_how_2:"دوّر على سطر «معرّف هذا الجهاز:» جنب حالة الترخيص.",
+      ord_how_3:"دوس زر «نسخ» اللي جنبه — بينسخ نفسها، وبعدها الصقها في الخانة اللي فوق.",
       ord_btn:"إرسال الطلب", ord_note:"🕐 بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
       resp_line:"🕐 بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
       nav_install:"التثبيت",
@@ -856,6 +884,7 @@
         <h3>${name}</h3>
         <div class="plan-price">$${p.price}</div>
         <div id="ppbtn-${p.id}" class="ppbtn" style="margin:12px 0"></div>
+        <a href="javascript:void(0)" class="ord-afpay" onclick="openOrder('${p.id}');return false;" data-i18n="ord_afpay">Paid? Send your Device ID →</a>
         <button type="button" class="buy-btn buy-btn2" onclick="openOrder('${p.id}');return false;">${voda}</button>
       </div>`;
     }).join("");
