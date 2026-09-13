@@ -118,6 +118,10 @@
   .s-card p{color:var(--muted);font-size:13.5px;margin-top:2px}
   .s-btn{margin-inline-start:auto;padding:10px 20px;border-radius:11px;font-weight:800;font-size:14px;
        background:rgba(56,189,248,.14);border:1px solid rgba(56,189,248,.4);color:#7dd3fc;white-space:nowrap}
+  button.s-card{width:100%;text-align:start;cursor:pointer;font-family:inherit}
+  body[dir="rtl"] button.s-card{text-align:right}
+  .resp{margin-top:22px;text-align:center;color:var(--muted);font-size:14px;padding:14px 18px;
+       border:1px dashed var(--line);border-radius:12px;background:var(--card)}
 
   /* ---------- faq ---------- */
   details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px}
@@ -353,21 +357,27 @@
 <section id="support">
   <div class="wrap">
     <div class="sec-head">
-      <h2 data-i18n="sup_h2">Support &amp; purchase</h2>
-      <p data-i18n="sup_sub">Fast service through the official channels</p>
+      <h2 data-i18n="sup_h2">Support &amp; help</h2>
+      <p data-i18n="sup_sub">We usually reply within an hour — Arabic &amp; English support available</p>
     </div>
     <div class="grid g2">
-      <a class="card s-card" href="https://t.me/JM_license_bot?text=%2Fstart%20buy" target="_blank" rel="noopener">
+      <button type="button" class="card s-card s-act" onclick="openChat();return false;">
+        <div class="s-ic">💬</div>
+        <div><h3 data-i18n="lc_t">Live chat — fastest</h3><p data-i18n="lc_d">Talk to us directly from this page. Usually a reply within an hour.</p></div>
+        <span class="s-btn" data-i18n="lc_b">Start chat now →</span>
+      </button>
+      <button type="button" class="card s-card s-act" onclick="openChat();return false;">
+        <div class="s-ic">🎫</div>
+        <div><h3 data-i18n="tk_t">Report a problem</h3><p data-i18n="tk_d">Technical issue or bug? Open a ticket from the chat window (“Submit a ticket” tab).</p></div>
+        <span class="s-btn" data-i18n="tk_b">Open a ticket →</span>
+      </button>
+      <button type="button" class="card s-card s-act" onclick="openChat();return false;">
         <div class="s-ic">🛒</div>
-        <div><h3 data-i18n="sup1t">Buy a license</h3><p data-i18n="sup1d">Start a conversation to get your license key</p></div>
-        <span class="s-btn" data-i18n="sup1b">Start purchase →</span>
-      </a>
-      <a class="card s-card" href="https://t.me/JM_license_bot?text=%2Fstart%20support" target="_blank" rel="noopener">
-        <div class="s-ic">🎧</div>
-        <div><h3 data-i18n="sup2t">Technical support</h3><p data-i18n="sup2d">Installation or performance issue? Contact support</p></div>
-        <span class="s-btn" data-i18n="sup2b">Contact now →</span>
-      </a>
+        <div><h3 data-i18n="buy_t">Buy a license</h3><p data-i18n="buy_d">Payment is completed manually through live chat — ask for the details.</p></div>
+        <span class="s-btn" data-i18n="buy_b">Ask for details →</span>
+      </button>
     </div>
+    <div class="resp" data-i18n="resp_line">🕐 We reply within ~1 hour · daily 3:00 PM – 12:00 AM (Cairo time)</div>
   </div>
 </section>
 
@@ -429,9 +439,14 @@
       ver_load:"Loading versions list…", ver_err:"Couldn't load the release list right now.",
       ver_th_version:"Version", ver_th_date:"Date", ver_th_size:"Size", ver_th_dl:"Download",
       ver_latest:"Latest", ver_dl:"Direct download", ver_view:"View release",
-      sup_h2:"Support & purchase", sup_sub:"Fast service through the official channels",
-      sup1t:"Buy a license", sup1d:"Start a conversation to get your license key", sup1b:"Start purchase →",
-      sup2t:"Technical support", sup2d:"Installation or performance issue? Contact support", sup2b:"Contact now →",
+      sup_h2:"Support & help", sup_sub:"We usually reply within an hour — Arabic & English support",
+      lc_t:"Live chat — fastest", lc_d:"Talk to us directly from this page. Usually a reply within an hour.",
+      lc_b:"Start chat now →",
+      tk_t:"Report a problem", tk_d:"Technical issue or bug? Open a ticket from the chat window (“Submit a ticket” tab).",
+      tk_b:"Open a ticket →",
+      buy_t:"Buy a license", buy_d:"Payment is completed manually through live chat — ask for the details.",
+      buy_b:"Ask for details →",
+      resp_line:"🕐 We reply within ~1 hour · daily 3:00 PM – 12:00 AM (Cairo time)",
       nav_install:"Install",
       inst_h2:"How to install", inst_sub:"From download to running in 3 simple steps",
       s1t:"Download the installer", s1d:"Click the “Download now” button on this page (or any version in the table). The file JM_Setup.exe is saved to your Downloads folder.",
@@ -482,9 +497,14 @@
       ver_load:"جاري تحميل قائمة الإصدارات…", ver_err:"مش قادرين نجيب قائمة الإصدارات دلوقتي.",
       ver_th_version:"الإصدار", ver_th_date:"التاريخ", ver_th_size:"الحجم", ver_th_dl:"تحميل",
       ver_latest:"الأحدث", ver_dl:"تحميل مباشر", ver_view:"عرض الإصدار",
-      sup_h2:"الدعم والشراء", sup_sub:"خدمة سريعة عبر القنوات الرسمية",
-      sup1t:"شراء الترخيص", sup1d:"ابدأ محادثة للحصول على مفتاح الترخيص", sup1b:"ابدأ الشراء ←",
-      sup2t:"الدعم الفني", sup2d:"مشكلة في التثبيت أو الأداء؟ تواصل مع الدعم", sup2b:"تواصل الآن ←",
+      sup_h2:"الدعم والمساعدة", sup_sub:"بنرد عليك غالباً خلال ساعة — الدعم بالعربي والإنجليزي",
+      lc_t:"المحادثة المباشرة — الأسرع", lc_d:"كلمنا هنا مباشرة من الصفحة دي. الرد غالباً خلال ساعة.",
+      lc_b:"ابدأ الشات الآن ←",
+      tk_t:"بلّغ عن مشكلة", tk_d:"مشكلة تقنية أو خطأ؟ افتح تذكرة من داخل الشات (تبويب \"رفع تذكرة\").",
+      tk_b:"افتح تذكرة ←",
+      buy_t:"شراء الترخيص", buy_d:"الدفع دلوقتي بيتتم يدويًا من خلال المحادثة المباشرة — اطلب التفاصيل.",
+      buy_b:"اطلب التفاصيل ←",
+      resp_line:"🕐 بنرد خلال ساعة تقريباً · يومياً من 3 ظهراً حتى 12 منتصف الليل (بتوقيت القاهرة)",
       nav_install:"التثبيت",
       inst_h2:"طريقة التثبيت", inst_sub:"من التحميل للتشغيل في 3 خطوات بسيطة",
       s1t:"حمّل الملف", s1d:"دوس على زر “تحميل الآن” في الصفحة (أو أي نسخة في الجدول). الملف JM_Setup.exe بيترجّل على مجلد التحميلات (Downloads).",
@@ -616,6 +636,12 @@
   }
 
   /* ---------- init ---------- */
+  function openChat(){
+    try{
+      if (typeof Tawk_API !== "undefined" && Tawk_API.maximize) Tawk_API.maximize();
+      else window.Tawk_API = window.Tawk_API || { onLoad: function(){ Tawk_API.maximize(); } };
+    }catch(e){}
+  }
   document.getElementById("year").textContent = new Date().getFullYear();
   try{ const saved = localStorage.getItem("jm_lang"); if (saved === "ar" || saved === "en") curLang = saved; }catch(e){}
   applyLang(curLang);
