@@ -128,6 +128,16 @@
   body[dir="rtl"] details p{padding-right:30px}
   body[dir="ltr"] details p{padding-left:30px}
 
+  /* ---------- install steps ---------- */
+  .inst-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));margin-bottom:26px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column}
+  .step h3{font-size:16.5px;font-weight:800;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:13.8px;margin-bottom:18px}
+  .step .num{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:900;font-size:15px;margin-bottom:14px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+  .step svg{width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--bg2);margin-top:auto}
+  .figcap{color:var(--muted);font-size:12.5px;margin-top:10px}
+
   /* ---------- footer ---------- */
   footer{border-top:1px solid var(--line);padding:38px 0;text-align:center;color:var(--muted);font-size:13.5px}
   footer .brand{color:var(--txt);font-weight:900;font-size:15px}
@@ -150,6 +160,7 @@
     <div class="nav-links">
       <a href="#features" data-i18n="nav_features">Features</a>
       <a href="#versions" data-i18n="nav_versions">Versions</a>
+      <a href="#install" data-i18n="nav_install">Install</a>
       <a href="#support" data-i18n="nav_support">Support</a>
       <a href="#faq" data-i18n="nav_faq">FAQ</a>
     </div>
@@ -210,6 +221,132 @@
       <p data-i18n="ver_sub">The list updates automatically — click direct download for any version</p>
     </div>
     <div id="verTable"><div class="loading"><span data-i18n="ver_load">Loading versions list…</span></div></div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-i18n="inst_h2">How to install</h2>
+      <p data-i18n="inst_sub">From download to running in 3 simple steps</p>
+    </div>
+    <div class="inst-grid">
+
+      <div class="step">
+        <span class="num">1</span>
+        <h3 data-i18n="s1t">Download the installer</h3>
+        <p data-i18n="s1d">Click the “Download now” button on this page (or any version in the table). The file JM_Setup.exe is saved to your Downloads folder.</p>
+        <svg viewBox="0 0 340 244" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="dlg1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/>
+            </linearGradient>
+          </defs>
+          <rect width="340" height="244" rx="16" fill="#0d1120"/>
+          <rect x="10" y="10" width="320" height="34" rx="10" fill="#161b2e"/>
+          <circle cx="24" cy="27" r="4" fill="#ff5f57"/>
+          <circle cx="38" cy="27" r="4" fill="#febc2e"/>
+          <circle cx="52" cy="27" r="4" fill="#28c840"/>
+          <rect x="64" y="17" width="150" height="20" rx="10" fill="#0a0d16"/>
+          <text x="70" y="31" font-family="Segoe UI, Cairo, Arial" font-size="10.5" fill="#9aa3c0" data-i18n="sv_url">jmtools.github.io/jm</text>
+          <rect x="88" y="62" width="164" height="58" rx="12" fill="url(#dlg1)"/>
+          <g transform="translate(104,78)" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M12 5v9"/>
+            <path d="m8 11 4 4 4-4"/>
+            <path d="M5 15.5v1.5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1.5"/>
+          </g>
+          <text x="134" y="84" font-family="Segoe UI, Cairo, Arial" font-size="12" font-weight="700" fill="#fff" data-i18n="sv_dl_btn">Download now</text>
+          <text x="134" y="100" font-family="Segoe UI, Cairo, Arial" font-size="10" fill="#e0e0ff" data-i18n="sv_dl_btn2">83 MB · installer</text>
+          <path d="M170 122 v22" stroke="#3b4568" stroke-width="2" stroke-dasharray="4 4"/>
+          <path d="M170 142 l-5-6 M170 142 l5-6" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="72" y="154" width="196" height="54" rx="11" fill="#161b2e" stroke="#2a3150"/>
+          <g transform="translate(86,166)" stroke="#818cf8" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 3h5l4 4v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+            <path d="M14 3v4h4"/>
+          </g>
+          <text x="112" y="180" font-family="Segoe UI, Cairo, Arial" font-size="12" font-weight="700" fill="#eef1ff" data-i18n="sv_file">JM_Setup.exe</text>
+          <text x="112" y="195" font-family="Segoe UI, Cairo, Arial" font-size="10.5" fill="#9aa3c0" data-i18n="sv_filedone">Saved to Downloads ✓</text>
+          <circle cx="246" cy="180" r="11" fill="#34d399"/>
+          <path d="M241 180l3.5 3.5 6-7" stroke="#0d1120" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="figcap" data-i18n="sv1_cap">The file lands in your Downloads folder.</div>
+      </div>
+
+      <div class="step">
+        <span class="num">2</span>
+        <h3 data-i18n="s2t">A warning may appear — that’s normal</h3>
+        <p data-i18n="s2d">New apps with few downloads are often flagged by Windows SmartScreen. It does not mean the file is bad — the file is checked and safe. Here is the exact screen:</p>
+        <svg viewBox="0 0 340 272" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <rect width="340" height="272" rx="16" fill="#0d1120"/>
+          <rect x="22" y="20" width="296" height="196" rx="12" fill="#151a2c" stroke="#2a3150"/>
+          <path d="M22 32a12 12 0 0 1 12-12h272a12 12 0 0 1 12 12v12H22Z" fill="#1b2140"/>
+          <text x="170" y="45" font-family="Segoe UI, Cairo, Arial" font-size="12" font-weight="700" fill="#eef1ff" text-anchor="middle" data-i18n="sv_win_title">Windows protected your PC</text>
+          <g transform="translate(28,86)">
+            <path d="M28 4 54 50H2Z" fill="#fbbf24"/>
+            <path d="M28 19v17" stroke="#7a3c00" stroke-width="3.4" stroke-linecap="round"/>
+            <circle cx="28" cy="44" r="2.6" fill="#7a3c00"/>
+          </g>
+          <text x="86" y="84" font-family="Segoe UI, Cairo, Arial" font-size="10.5" font-weight="700" fill="#eef1ff" data-i18n="sv_a1">Microsoft Defender SmartScreen prevented an</text>
+          <text x="86" y="98" font-family="Segoe UI, Cairo, Arial" font-size="10.5" font-weight="700" fill="#eef1ff" data-i18n="sv_a2">unrecognized app from starting. That is</text>
+          <text x="86" y="112" font-family="Segoe UI, Cairo, Arial" font-size="10.5" font-weight="700" fill="#eef1ff" data-i18n="sv_a3">normal — new apps with few downloads yet.</text>
+          <text x="86" y="128" font-family="Segoe UI, Cairo, Arial" font-size="10" fill="#9aa3c0" data-i18n="sv_a4">App: JM_Setup.exe · Publisher: Unknown</text>
+          <text x="86" y="146" font-family="Segoe UI, Cairo, Arial" font-size="11" fill="#7dd3fc" data-i18n="sv_more">More info</text>
+          <rect x="210" y="130" width="98" height="30" rx="6" fill="#1668e3"/>
+          <text x="259" y="149" font-family="Segoe UI, Cairo, Arial" font-size="11.5" font-weight="700" fill="#fff" text-anchor="middle" data-i18n="sv_run">Run anyway</text>
+          <circle cx="70" cy="246" r="9" fill="#6366f1"/>
+          <text x="76" y="250" font-family="Segoe UI, Cairo, Arial" font-size="10" font-weight="700" fill="#fff">1</text>
+          <text x="86" y="250" font-family="Segoe UI, Cairo, Arial" font-size="11.5" font-weight="700" fill="#eef1ff" data-i18n="sv_h1">· Click “More info”</text>
+          <circle cx="210" cy="246" r="9" fill="#a855f7"/>
+          <text x="216" y="250" font-family="Segoe UI, Cairo, Arial" font-size="10" font-weight="700" fill="#fff">2</text>
+          <text x="226" y="250" font-family="Segoe UI, Cairo, Arial" font-size="11.5" font-weight="700" fill="#eef1ff" data-i18n="sv_h2">· then “Run anyway”</text>
+          <text x="170" y="266" font-family="Segoe UI, Cairo, Arial" font-size="10" fill="#9aa3c0" text-anchor="middle" data-i18n="sv_hb">SmartScreen builds trust as downloads grow — verify file size (83 MB) and page before opening.</text>
+        </svg>
+        <div class="figcap" data-i18n="sv2_cap">Same in Arabic Windows: “More info” then “Run anyway”.</div>
+      </div>
+
+      <div class="step">
+        <span class="num">3</span>
+        <h3 data-i18n="s3t">Install and run</h3>
+        <p data-i18n="s3d">Open JM_Setup.exe from Downloads, then follow the installer: click “Next” → “Install”. The app starts automatically when finished, and updates itself from now on.</p>
+        <svg viewBox="0 0 340 246" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="dlg3" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/>
+            </linearGradient>
+          </defs>
+          <rect width="340" height="246" rx="16" fill="#0d1120"/>
+          <rect x="70" y="10" width="200" height="46" rx="11" fill="#161b2e" stroke="#2a3150"/>
+          <g transform="translate(84,20)" stroke="#818cf8" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 3h5l4 4v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+            <path d="M14 3v4h4"/>
+          </g>
+          <text x="112" y="30" font-family="Segoe UI, Cairo, Arial" font-size="11.5" font-weight="700" fill="#eef1ff" data-i18n="sv_file2">JM_Setup.exe</text>
+          <text x="112" y="45" font-family="Segoe UI, Cairo, Arial" font-size="10" fill="#9aa3c0" data-i18n="sv_size2">83 MB</text>
+          <path d="M170 58 v18" stroke="#3b4568" stroke-width="2" stroke-dasharray="4 4"/>
+          <path d="M170 74 l6-7 M170 74 l-6-7" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="46" y="84" width="248" height="126" rx="11" fill="#151a2c" stroke="#2a3150"/>
+          <path d="M46 95a11 11 0 0 1 11-11h226a11 11 0 0 1 11 11v15H46Z" fill="#1b2140"/>
+          <text x="170" y="104" font-family="Segoe UI, Cairo, Arial" font-size="11" font-weight="700" fill="#eef1ff" text-anchor="middle" data-i18n="sv_wiz">JM Setup — Installer</text>
+          <text x="66" y="130" font-family="Segoe UI, Cairo, Arial" font-size="11.5" fill="#eef1ff" data-i18n="sv_inst">Installing JM…</text>
+          <rect x="66" y="140" width="208" height="12" rx="6" fill="#1c2338"/>
+          <rect x="66" y="140" width="158" height="12" rx="6" fill="url(#dlg3)"/>
+          <circle cx="278" cy="146" r="10" fill="#34d399"/>
+          <path d="M273 146l3.5 3.5 6-7" stroke="#0d1120" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="66" y="168" width="70" height="24" rx="5" fill="#1c2338"/>
+          <text x="101" y="183" font-family="Segoe UI, Cairo, Arial" font-size="10.5" fill="#9aa3c0" text-anchor="middle" data-i18n="sv_cancel">Cancel</text>
+          <rect x="150" y="168" width="88" height="24" rx="5" fill="url(#dlg3)"/>
+          <text x="194" y="183" font-family="Segoe UI, Cairo, Arial" font-size="10.5" font-weight="700" fill="#fff" text-anchor="middle" data-i18n="sv_install">Install</text>
+          <text x="170" y="226" font-family="Segoe UI, Cairo, Arial" font-size="11.5" font-weight="700" fill="#34d399" text-anchor="middle" data-i18n="sv_done">✓ Done — JM opens automatically</text>
+        </svg>
+        <div class="figcap" data-i18n="sv3_cap">Follow: Next → Install → Done.</div>
+      </div>
+
+    </div>
+
+    <details class="inst-extra">
+      <summary data-i18n="inst_warn_t">Still blocked? SmartScreen or antivirus details</summary>
+      <p data-i18n="inst_warn_d">Some browsers show extra steps. In Edge / Chrome: if you see “Keep” or “Keep anyway”, choose it. If Windows asks about an unknown publisher, use “More info → Run anyway”. The file JM_Setup.exe is about 83 MB. Real commercial programs are signed with a paid certificate (which costs money every year) — ours is not, that is why you see the warning. If your antivirus quarantines the file, restore it and add an exception for it, then contact support.</p>
+    </details>
   </div>
 </section>
 
@@ -295,6 +432,23 @@
       sup_h2:"Support & purchase", sup_sub:"Fast service through the official channels",
       sup1t:"Buy a license", sup1d:"Start a conversation to get your license key", sup1b:"Start purchase →",
       sup2t:"Technical support", sup2d:"Installation or performance issue? Contact support", sup2b:"Contact now →",
+      nav_install:"Install",
+      inst_h2:"How to install", inst_sub:"From download to running in 3 simple steps",
+      s1t:"Download the installer", s1d:"Click the “Download now” button on this page (or any version in the table). The file JM_Setup.exe is saved to your Downloads folder.",
+      sv_url:"jmtools.github.io/jm", sv_dl_btn:"Download now", sv_dl_btn2:"83 MB · installer",
+      sv_file:"JM_Setup.exe", sv_filedone:"Saved to Downloads ✓", sv1_cap:"The file lands in your Downloads folder.",
+      s2t:"A warning may appear — that’s normal", s2d:"New apps with few downloads are often flagged by Windows SmartScreen. It does not mean the file is bad — the file is checked and safe. Here is the exact screen:",
+      sv_win_title:"Windows protected your PC",
+      sv_a1:"Microsoft Defender SmartScreen prevented an", sv_a2:"unrecognized app from starting. That is", sv_a3:"normal — new apps with few downloads yet.",
+      sv_a4:"App: JM_Setup.exe · Publisher: Unknown", sv_more:"More info", sv_run:"Run anyway",
+      sv_h1:"· Click “More info”", sv_h2:"· then “Run anyway”",
+      sv_hb:"SmartScreen builds trust as downloads grow — verify file size (83 MB) and page before opening.",
+      sv2_cap:"Same in Arabic Windows: “More info” then “Run anyway”.",
+      s3t:"Install and run", s3d:"Open JM_Setup.exe from Downloads, then follow the installer: click “Next” → “Install”. The app starts automatically when finished, and updates itself from now on.",
+      sv_file2:"JM_Setup.exe", sv_size2:"83 MB", sv_wiz:"JM Setup — Installer", sv_inst:"Installing JM…",
+      sv_cancel:"Cancel", sv_install:"Install", sv_done:"✓ Done — JM opens automatically", sv3_cap:"Follow: Next → Install → Done.",
+      inst_warn_t:"Still blocked? SmartScreen or antivirus details",
+      inst_warn_d:"Some browsers show extra steps. In Edge / Chrome: if you see “Keep” or “Keep anyway”, choose it. If Windows asks about an unknown publisher, use “More info → Run anyway”. The file JM_Setup.exe is about 83 MB. Real commercial programs are signed with a paid certificate (which costs money every year) — ours is not, that is why you see the warning. If your antivirus quarantines the file, restore it and add an exception for it, then contact support.",
       faq_h2:"Frequently asked questions",
       q1t:"The download is blocked / the file looks too big. Why?",
       q1d:"The file is about 83 MB because it bundles all libraries and FFmpeg internally, so it runs on any machine with no extra installs. If the download stops, try another browser or a different network.",
@@ -303,7 +457,7 @@
       q3t:"How do I get a new version?",
       q3d:"The app checks for updates automatically. As soon as a new version is released, you will see a notification inside the app and can download and install it directly.",
       q4t:"Windows shows an “unknown publisher” warning — what do I do?",
-      q4d:"Because the file is not signed with a paid certificate, SmartScreen may warn. Click “More info → Run anyway” — the file is 100% safe.",
+      q4d:"Because the file is not signed with a paid certificate, SmartScreen may warn. Click “More info → Run anyway” — the file is 100% safe. <a href=\"#install\" style=\"color:#7dd3fc\">See the illustrated installation guide →</a>",
       foot_rights:" · All rights reserved",
       foot_note:"JM is not affiliated with IMVU™ — a private tool for licensed users only"
     },
@@ -331,6 +485,23 @@
       sup_h2:"الدعم والشراء", sup_sub:"خدمة سريعة عبر القنوات الرسمية",
       sup1t:"شراء الترخيص", sup1d:"ابدأ محادثة للحصول على مفتاح الترخيص", sup1b:"ابدأ الشراء ←",
       sup2t:"الدعم الفني", sup2d:"مشكلة في التثبيت أو الأداء؟ تواصل مع الدعم", sup2b:"تواصل الآن ←",
+      nav_install:"التثبيت",
+      inst_h2:"طريقة التثبيت", inst_sub:"من التحميل للتشغيل في 3 خطوات بسيطة",
+      s1t:"حمّل الملف", s1d:"دوس على زر “تحميل الآن” في الصفحة (أو أي نسخة في الجدول). الملف JM_Setup.exe بيترجّل على مجلد التحميلات (Downloads).",
+      sv_url:"jmtools.github.io/jm", sv_dl_btn:"تحميل الآن", sv_dl_btn2:"83 ميغا · المثبّت",
+      sv_file:"JM_Setup.exe", sv_filedone:"وصل في التحميلات ✓", sv1_cap:"الملف بيوصل لمجلد التحميلات تلقائيًا.",
+      s2t:"هيظهر تنبيه — طبيعي 100%", s2d:"التطبيقات الجديدة اللي تحميلاتها قليلة بيعملهم Windows SmartScreen تحذير. دي مش معناه إن الملف مش سليم — الملف متأكد منه وآمن. دي الشاشة اللي هتشوفها بالظبط:",
+      sv_win_title:"تم حماية الكمبيوتر بواسطة Windows",
+      sv_a1:"منع تطبيق غير معروف من البدء،", sv_a2:"وهذا طبيعي للتطبيقات الجديدة", sv_a3:"التي تحميلاتها ما زالت قليلة.",
+      sv_a4:"التطبيق: JM_Setup.exe · الناشر: غير معروف", sv_more:"معلومات أكثر", sv_run:"تشغيل على أي حال",
+      sv_h1:"· اضغط “معلومات أكثر”", sv_h2:"· ثم “تشغيل على أي حال”",
+      sv_hb:"الثقة بتكبر مع كترة التحميلات — اتأكد من حجم الملف (83 ميغا) والصفحة قبل ما تفتحه.",
+      sv2_cap:"في النسخة العربية لـ Windows نفس الحركة: “معلومات أكثر” ثم “تشغيل على أي حال”.",
+      s3t:"التثبيت والتشغيل", s3d:"افتح JM_Setup.exe من مجلد التحميلات واتبع المثبّت: دوس “التالي” ← “تثبيت”. البرنامج بيفتح تلقائيًا بعد الخلاص، وبعدها بيحدّث نفسه من تلقاء نفسه.",
+      sv_file2:"JM_Setup.exe", sv_size2:"83 ميغا", sv_wiz:"مثبّت JM", sv_inst:"جاري تثبيت JM…",
+      sv_cancel:"إلغاء", sv_install:"تثبيت", sv_done:"✓ خلص — JM بيفتح تلقائيًا", sv3_cap:"اتبع: التالي ← تثبيت ← انتهى.",
+      inst_warn_t:"لسه متقفلة؟ تفاصيل SmartScreen والأنتيفايروس",
+      inst_warn_d:"بعض المتصفحات طالبة خطوات زيادة: في Edge / Chrome لو ظهرت “Keep / إبقاء” اخترها. لو ويندوز سأل عن “ناشر غير معروف” استخدم “معلومات أكثر ← تشغيل على أي حال”. الملف حوالي 83 ميغا. البرامج التجارية الحقيقية بتوقّع بشهادة مدفوعة (بتتكلف فلوس كل سنة) — برنامجنا مش موقّع، وعشان كده التنبيه ظاهر. لو الأنتيفايروس عزل الملف، استرجعه وأضف استثناء له، ولو محتاج مساعدة تواصل مع الدعم.",
       faq_h2:"أسئلة شائعة",
       q1t:"مينفعش التحميل؟ الموقع بيقول الملف كبير",
       q1d:"الملف حجمه تقريباً 83 ميغابايت لأنه بيشمل كل المكتبات وffmpeg داخلياً، فيشتغل على أي جهاز من غير تثبيت إضافات. لو التحميل واقف، جرّب من متصفح آخر أو شبكة مختلفة.",
@@ -339,7 +510,7 @@
       q3t:"لو جاني تحديث جديد إزاي؟",
       q3d:"البرنامج بيفحص التحديثات تلقائياً، وأول ما النسخة الجديدة تتطرح هتلاقي تنبيه داخل البرنامج وتنزيلها وتثبيتها مباشر.",
       q4t:"ويندوز بيحذر من ملف مجهول — أعمل إيه؟",
-      q4d:"لأن الملف مش موقّع بشهادة دفع سنوية، ممكن يظهر تحذير Smartscreen. دوس \"معلومات أكثر ← تشغيل على أي حال\" — الملف سليم 100%.",
+      q4d:"لأن الملف مش موقّع بشهادة دفع سنوية، ممكن يظهر تحذير Smartscreen. دوس \"معلومات أكثر ← تشغيل على أي حال\" — الملف سليم 100%. <a href=\"#install\" style=\"color:#7dd3fc\">شوف دليل التثبيت بالصور ←</a>",
       foot_rights:" · جميع الحقوق محفوظة",
       foot_note:"JM غير تابع لـ IMVU™ — أداة خاصة لأصحاب الرخص فقط"
     }
@@ -358,6 +529,11 @@
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.getAttribute("data-i18n");
       if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll("svg text").forEach(el => {
+      const anchor = el.getAttribute("text-anchor") || "start";
+      el.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+      el.setAttribute("text-anchor", anchor === "middle" ? "middle" : (lang === "ar" ? "end" : "start"));
     });
     document.getElementById("langBtn").textContent = lang === "ar" ? "English" : "العربية";
   }
