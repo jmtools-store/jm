@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<script src="https://www.paypal.com/sdk/js?client-id=BAAIRB6oBdCJkwvIozyNbxYwGoa4WoAv9vLpjUOVkgIc2yGpNnWv9wG2aSmB-kRHaEqRGrJv7_aj07cVX4&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 <style>
   :root{
     --bg:#0a0d16; --bg2:#0e1220; --card:rgba(255,255,255,.045);
@@ -152,6 +153,23 @@
   .tk-ok{text-align:center;padding:22px 0;color:var(--ok);font-weight:800;font-size:15.5px}
   .tk-err{text-align:center;color:var(--warn);font-size:13px;margin-top:10px}
 
+  /* ---------- buy section ---------- */
+  .buy-card{display:flex;flex-direction:column}
+  .buy-price{font-size:15px;margin:14px 0 10px;color:var(--muted)}
+  .buy-price b{font-size:24px;color:#c7cbfa}
+  .buy-btn{display:block;width:100%;text-align:center;padding:13px;border-radius:12px;font-weight:900;font-size:15px;color:#fff;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));cursor:pointer;border:0;font-family:inherit}
+  .buy-btn:hover{opacity:.9}
+  .buy-btn2{background:linear-gradient(135deg,#0ea5e9,#6366f1)}
+  .buy-tip{color:var(--muted);font-size:12.5px;margin-top:12px}
+  .buy-voda{font-size:20px;font-weight:900;letter-spacing:1px;color:#c7cbfa;margin-bottom:14px}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .plan-card{text-align:center}
+  .plan-days{color:var(--muted);font-size:13px;font-weight:700;letter-spacing:.3px}
+  .plan-card h3{font-size:18px;font-weight:900;margin:6px 0 2px}
+  .plan-price{font-size:26px;font-weight:900;color:#c7cbfa;margin-bottom:14px}
+  .plan-price small{color:var(--muted);font-size:13px;font-weight:600}
+
   /* ---------- faq ---------- */
   details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px}
   summary{cursor:pointer;font-weight:800;font-size:15.5px;display:flex;align-items:center;gap:10px}
@@ -194,6 +212,7 @@
       <a href="#features" data-i18n="nav_features">Features</a>
       <a href="#versions" data-i18n="nav_versions">Versions</a>
       <a href="#install" data-i18n="nav_install">Install</a>
+      <a href="#buy" data-i18n="nav_buy">License</a>
       <a href="#support" data-i18n="nav_support">Support</a>
       <a href="#faq" data-i18n="nav_faq">FAQ</a>
     </div>
@@ -383,6 +402,35 @@
   </div>
 </section>
 
+<section id="buy">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-i18n="buy_h2">Get a license</h2>
+      <p data-i18n="buy_sub">One license, one machine — instant delivery after payment</p>
+    </div>
+    <div id="buyPlans" class="grid g4"></div>
+    <div class="grid g2" style="margin-top:20px">
+
+      <div class="card buy-card">
+        <div class="ic">🌍</div>
+        <h3 data-i18n="buy_pay_t">Secure payment via PayPal</h3>
+        <p data-i18n="buy_pay_d">Payments happen on PayPal's secure page — your card details never touch our site. Money goes straight to our account, then we send your key.</p>
+        <p class="buy-tip" data-i18n="buy_pay_after">After payment, the key is delivered on the details you enter.</p>
+      </div>
+
+      <div class="card buy-card">
+        <div class="ic">📲</div>
+        <h3 data-i18n="buy_voda_t">Vodafone Cash — Egypt</h3>
+        <p data-i18n="buy_voda_d">Transfer the amount to our Vodafone Cash wallet, then place the order with the exact sender name so we can confirm it.</p>
+        <div class="buy-voda" id="vodaNum"></div>
+        <button type="button" class="buy-btn buy-btn2" onclick="openOrder();return false;" data-i18n="buy_man_btn">Place order</button>
+        <p class="buy-tip" data-i18n="buy_man_after">We reply within 1–6 hours · 24/7</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section id="support">
   <div class="wrap">
     <div class="sec-head">
@@ -400,9 +448,9 @@
         <div><h3 data-i18n="tk_t">Report a problem</h3><p data-i18n="tk_d">Technical issue or bug? Fill a short form — it goes straight to our ticket inbox, no chat needed.</p></div>
         <span class="s-btn" data-i18n="tk_b">Open a ticket →</span>
       </button>
-      <button type="button" class="card s-card s-act" onclick="openChat();return false;">
+      <button type="button" class="card s-card s-act" onclick="goBuy();return false;">
         <div class="s-ic">🛒</div>
-        <div><h3 data-i18n="buy_t">Buy a license</h3><p data-i18n="buy_d">Payment is completed manually through live chat — ask for the details.</p></div>
+        <div><h3 data-i18n="buy_t">Buy a license</h3><p data-i18n="buy_d">Pay securely with PayPal (Visa &amp; Mastercard) or Vodafone Cash.</p></div>
         <span class="s-btn" data-i18n="buy_b">Ask for details →</span>
       </button>
     </div>
@@ -438,6 +486,41 @@
       <div class="tk-err" id="tkErr" hidden></div>
     </form>
     <div class="tk-ok" id="tkOk" hidden></div>
+  </div>
+</div>
+
+<div class="tk-modal" id="ordModal" hidden aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="tk-box">
+    <button type="button" class="tk-close" id="ordClose" aria-label="Close">✕</button>
+    <div class="tk-ic">📲</div>
+    <h3 data-i18n="ord_t">Manual order — Vodafone Cash / PayPal</h3>
+    <p class="tk-sub" data-i18n="ord_sub">Transfer the amount to us, then fill this form with your Device ID — it becomes an order ticket in our inbox and we confirm and send the key.</p>
+    <form id="ordForm" novalidate>
+      <label for="ordName" data-i18n="ord_name">Your name</label>
+      <input type="text" id="ordName" name="name" autocomplete="name" required>
+      <label for="ordContact" data-i18n="ord_contact">Email / phone / Telegram</label>
+      <input type="text" id="ordContact" name="contact" required>
+      <label for="ordDevice" data-i18n="ord_device">Device ID (from the app)</label>
+      <input type="text" id="ordDevice" name="device" required>
+      <label for="ordPlan" data-i18n="ord_plan">License plan</label>
+      <select id="ordPlan" name="plan">
+        <option value="m1" data-i18n="plan_m1">1 Month</option>
+        <option value="m3" data-i18n="plan_m3">3 Months</option>
+        <option value="m6" data-i18n="plan_m6">6 Months</option>
+        <option value="y1" data-i18n="plan_y1">1 Year</option>
+      </select>
+      <label for="ordMethod" data-i18n="ord_method">Payment method</label>
+      <select id="ordMethod" name="method">
+        <option value="Vodafone Cash" data-i18n="ord_m1">Vodafone Cash</option>
+        <option value="PayPal" data-i18n="ord_m2">PayPal</option>
+      </select>
+      <label for="ordSender" data-i18n="ord_sender">Sender name / reference (exactly as it appears on the transfer)</label>
+      <input type="text" id="ordSender" name="sender">
+      <button type="submit" class="tk-submit" id="ordSubmit" data-i18n="ord_btn">Send order</button>
+      <div class="tk-note" data-i18n="ord_note">🕐 We reply within 1–6 hours · 24/7</div>
+      <div class="tk-err" id="ordErr" hidden></div>
+    </form>
+    <div class="tk-ok" id="ordOk" hidden></div>
   </div>
 </div>
 
@@ -483,6 +566,14 @@
   const EJ_TEMPLATE_ID = "template_n0ipp4m";
   let EJ_CONFIGURED = true;
 
+  const VODA_NUMBER = "01065652724";   // Vodafone Cash wallet you receive on
+  const PLANS = [
+    {id:"m1", days:"30",  price:"5",  en:"1 Month",  ar:"شهر"},
+    {id:"m3", days:"90",  price:"12", en:"3 Months", ar:"3 شهور"},
+    {id:"m6", days:"180", price:"20", en:"6 Months", ar:"6 شهور"},
+    {id:"y1", days:"365", price:"30", en:"1 Year",   ar:"سنة"}
+  ];
+
   const I18N = {
     en: {
       nav_features:"Features", nav_versions:"Versions", nav_support:"Support", nav_faq:"FAQ",
@@ -516,8 +607,21 @@
       tkf_cat0:"Select…", cat_dl:"Download problem", cat_in:"Install / activation problem",
       cat_lic:"License / key issue", cat_pay:"Payment / shipping", cat_bug:"Bug / app error", cat_other:"Other",
       tkf_msg:"Describe the problem", tkf_btn:"Send ticket", tkf_note:"🕐 We reply within 1–6 hours · 24/7",
-      buy_t:"Buy a license", buy_d:"Payment is completed manually through live chat — ask for the details.",
+      buy_t:"Buy a license", buy_d:"Pay by PayPal (Visa accepted) or Vodafone Cash.",
       buy_b:"Ask for details →",
+      nav_buy:"License",
+      buy_h2:"Get a license", buy_sub:"One license, one machine — instant delivery after payment",
+      buy_pay_t:"Secure payment via PayPal", buy_pay_d:"Payments happen on PayPal's secure page — your card details never touch our site. Money goes straight to our account, then we send your key.",
+      buy_pay_after:"After payment, the key is delivered on the details you enter.",
+      buy_voda_t:"Vodafone Cash — Egypt", buy_voda_d:"Transfer the amount to our Vodafone Cash wallet, then place the order with the exact sender name so we can confirm it.",
+      buy_man_btn:"Place order", buy_man_after:"We reply within 1–6 hours · 24/7",
+      ord_plan:"License plan", plan_m1:"1 Month", plan_m3:"3 Months", plan_m6:"6 Months", plan_y1:"1 Year",
+      ord_t:"Manual order — Vodafone Cash / PayPal",
+      ord_sub:"Transfer the amount to us, then fill this form with your Device ID — it becomes an order ticket in our inbox and we confirm and send the key.",
+      ord_name:"Your name", ord_contact:"Email / phone / Telegram", ord_device:"Device ID (from the app)",
+      ord_method:"Payment method", ord_m1:"Vodafone Cash", ord_m2:"PayPal",
+      ord_sender:"Sender name / reference (exactly as it appears on the transfer)",
+      ord_btn:"Send order", ord_note:"🕐 We reply within 1–6 hours · 24/7",
       resp_line:"🕐 We reply within 1–6 hours · 24/7",
       nav_install:"Install",
       inst_h2:"How to install", inst_sub:"From download to running in 3 simple steps",
@@ -580,8 +684,21 @@
       tkf_cat0:"اختار…", cat_dl:"مشكلة في التحميل", cat_in:"مشكلة في التثبيت / التفعيل",
       cat_lic:"مشكلة في الترخيص / المفتاح", cat_pay:"الدفع / الشحن", cat_bug:"خطأ / عطل في البرنامج", cat_other:"غير ذلك",
       tkf_msg:"اشرح المشكلة", tkf_btn:"إرسال التذكرة", tkf_note:"🕐 بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
-      buy_t:"شراء الترخيص", buy_d:"الدفع دلوقتي بيتتم يدويًا من خلال المحادثة المباشرة — اطلب التفاصيل.",
+      buy_t:"شراء الترخيص", buy_d:"ادفع عبر باي بال (يقبل فيزا) أو فودافون كاش.",
       buy_b:"اطلب التفاصيل ←",
+      nav_buy:"الترخيص",
+      buy_h2:"احصل على ترخيص", buy_sub:"ترخيص واحد لجهاز واحد — التوصيل فوراً بعد الدفع",
+      buy_pay_t:"دفع آمن عبر باي بال", buy_pay_d:"الدفع بيتم في صفحة باي بال الرسمية الآمنة — بيانات كارتك مش بتوصلنا إطلاقاً. الفلوس بتوصل لحسابنا فوراً، وبعدين نبعثلك الكود.",
+      buy_pay_after:"جوه 1–6 ساعات الكود بيوصلك على البيانات اللي سجلتها.",
+      buy_voda_t:"فودافون كاش — داخل مصر", buy_voda_d:"حوّل المبلغ لمحفظة فودافون كاش، واكتب بعدها اسم المُرسِل بالظبط في الفورمة عشان نأكد التحويل.",
+      buy_man_btn:"طلّب من الفورمة", buy_man_after:"بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
+      ord_plan:"باكة الترخيص", plan_m1:"شهر", plan_m3:"3 شهور", plan_m6:"6 شهور", plan_y1:"سنة",
+      ord_t:"طلب يدوي — فودافون كاش / باي بال",
+      ord_sub:"حوّل لنا المبلغ، وبعدين املأ الفورمة دي بمعرف جهازك — بتتحول لتذكرة طلب في إنبوكسنا وبنأكد ونرسل الكود.",
+      ord_name:"اسمك", ord_contact:"إيميل / موبايل / تيليجرام", ord_device:"معرف الجهاز (من التطبيق)",
+      ord_method:"طريقة الدفع", ord_m1:"فودافون كاش", ord_m2:"باي بال",
+      ord_sender:"اسم المُرسِل / المرجع (بالظبط زي ما ظاهر على التحويل)",
+      ord_btn:"إرسال الطلب", ord_note:"🕐 بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
       resp_line:"🕐 بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
       nav_install:"التثبيت",
       inst_h2:"طريقة التثبيت", inst_sub:"من التحميل للتشغيل في 3 خطوات بسيطة",
@@ -720,6 +837,116 @@
       else window.Tawk_API = window.Tawk_API || { onLoad: function(){ Tawk_API.maximize(); } };
     }catch(e){}
   }
+  function goBuy(){
+    try{
+      const el = document.getElementById("buy");
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+    }catch(e){}
+  }
+
+  /* ---------- pricing cards ---------- */
+  function renderPlans(){
+    const box = document.getElementById("buyPlans");
+    if(!box) return;
+    const voda = curLang === "ar" ? "اطلب عبر فودافون كاش" : "Order via Vodafone Cash";
+    box.innerHTML = PLANS.map(p => {
+      const name = (curLang === "ar") ? p.ar : p.en;
+      return `<div class="card plan-card">
+        <div class="plan-days">${p.days} ${curLang === "ar" ? "يوم" : "days"}</div>
+        <h3>${name}</h3>
+        <div class="plan-price">$${p.price}</div>
+        <div id="ppbtn-${p.id}" class="ppbtn" style="margin:12px 0"></div>
+        <button type="button" class="buy-btn buy-btn2" onclick="openOrder('${p.id}');return false;">${voda}</button>
+      </div>`;
+    }).join("");
+  }
+
+  /* ---------- manual order modal ---------- */
+  function openOrder(planId){
+    const m = document.getElementById("ordModal");
+    m.hidden = false;
+    m.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+    document.getElementById("ordForm").hidden = false;
+    document.getElementById("ordOk").hidden = true;
+    document.getElementById("ordErr").hidden = true;
+    if(planId){
+      const sel = document.getElementById("ordPlan");
+      if(sel && [...sel.options].some(o => o.value === planId)) sel.value = planId;
+    }
+    try{ document.getElementById("ordName").focus(); }catch(e){}
+  }
+  function closeOrder(){
+    const m = document.getElementById("ordModal");
+    m.hidden = true;
+    m.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  }
+  document.getElementById("ordClose").addEventListener("click", closeOrder);
+  document.getElementById("ordModal").addEventListener("click", function(e){ if(e.target === this) closeOrder(); });
+
+  document.getElementById("ordForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    const errEl = document.getElementById("ordErr");
+    const btn = document.getElementById("ordSubmit");
+    errEl.hidden = true;
+    const ar = curLang === "ar";
+    if(!EJ_CONFIGURED){
+      errEl.textContent = ar
+        ? "فورمة الطلب مش مفعّلة بعد — استخدم الشات المباشر مؤقتًا."
+        : "The order form is not configured yet — use the live chat for now.";
+      errEl.hidden = false;
+      return;
+    }
+    const data = {
+      name: document.getElementById("ordName").value.trim(),
+      contact: document.getElementById("ordContact").value.trim(),
+      device: document.getElementById("ordDevice").value.trim(),
+      plan: document.getElementById("ordPlan").value,
+      method: document.getElementById("ordMethod").value,
+      sender: document.getElementById("ordSender").value.trim()
+    };
+    if(!data.name || !data.contact || !data.device){
+      errEl.textContent = ar
+        ? "اكتب الاسم ووسيلة التواصل ومعرف الجهاز."
+        : "Please fill in your name, contact and Device ID.";
+      errEl.hidden = false;
+      return;
+    }
+    try{
+      btn.disabled = true;
+      btn.textContent = ar ? "جاري الإرسال…" : "Sending…";
+      const pl = PLANS.find(p => p.id === data.plan) || PLANS[3];
+      const msg = "Device ID: " + data.device + "\n"
+        + "Plan: " + pl.id + " (" + pl.days + " days, $" + pl.price + ")\n"
+        + "Payment method: " + data.method + "\n"
+        + "Sender / Ref: " + (data.sender || "-") + "\n\n"
+        + "Order placed via the website.";
+      await emailjs.send(EJ_SERVICE_ID, EJ_TEMPLATE_ID, {
+        ticket_name: data.name,
+        ticket_contact: data.contact,
+        ticket_category: "Order — " + data.method,
+        ticket_message: msg,
+        ticket_lang: curLang,
+        ticket_page: window.location.href
+      }, { publicKey: EJ_PUBLIC_KEY });
+      document.getElementById("ordForm").reset();
+      document.getElementById("ordForm").hidden = true;
+      const ok = document.getElementById("ordOk");
+      ok.textContent = ar
+        ? "✓ تم استلام طلبك! هنأكد تحويل الفلوس ونرسل الكود لبياناتك خلال 1 إلى 6 ساعات."
+        : "✓ Order received! We'll confirm your payment and send the key within 1–6 hours.";
+      ok.hidden = false;
+    }catch(err){
+      errEl.textContent = ar
+        ? "حصلت مشكلة في الإرسال. جرّب تاني، أو استخدم الشات المباشر."
+        : "Something went wrong sending the order. Try again, or use the live chat.";
+      errEl.hidden = false;
+    }finally{
+      btn.disabled = false;
+      btn.textContent = ar ? "إرسال الطلب" : "Send order";
+    }
+  });
 
   /* ---------- ticket modal ---------- */
   function openTicket(){
@@ -796,6 +1023,14 @@
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
+  try{ document.getElementById("vodaNum").textContent = VODA_NUMBER; }catch(e){}
+  renderPlans();
+  const PP_HOSTED = {"m1":"Z8SHUGWLUUWKL","m3":"HVNEMJZJ872CQ","m6":"J39WDME7V5LUA","y1":"Z4LNS53RW6P46"};
+  for(const pid of Object.keys(PP_HOSTED)){
+    const hid = PP_HOSTED[pid];
+    if(!hid) continue;
+    try{ paypal.HostedButtons({hostedButtonId:hid}).render("#ppbtn-"+pid); }catch(e){}
+  }
   document.querySelector(".logo").addEventListener("click", function(e){
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     e.preventDefault();
