@@ -777,6 +777,7 @@
         ticket_lang: curLang,
         ticket_page: window.location.href
       }, { publicKey: EJ_PUBLIC_KEY });
+      document.getElementById("tkForm").reset();
       document.getElementById("tkForm").hidden = true;
       const ok = document.getElementById("tkOk");
       ok.textContent = ar
