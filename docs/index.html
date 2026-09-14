@@ -185,13 +185,15 @@
   .voda-copy:hover{background:rgba(255,255,255,.12)}
   .voda-tip{text-align:center;color:var(--muted);font-size:12px;margin:0 0 14px}
   .voda-price{display:block;color:#fbbf24;font-size:16px;font-weight:900;margin-bottom:10px}
-  #vodaFile{width:100%;color:var(--muted);font-size:13.5px;background:rgba(255,255,255,.04);
+  #vodaMethod{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-image:none;
+      cursor:not-allowed;opacity:.9}
+  .tk-box input[type=file]{width:100%;color:var(--muted);font-size:13.5px;background:rgba(255,255,255,.04);
       border:1px dashed rgba(129,140,248,.4);border-radius:11px;padding:8px 12px;cursor:pointer;
       box-sizing:border-box}
-  #vodaFile::file-selector-button{margin-inline-end:12px;padding:7px 15px;border:0;border-radius:9px;
+  .tk-box input[type=file]::file-selector-button{margin-inline-end:12px;padding:7px 15px;border:0;border-radius:9px;
       background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;
       font-size:13px;cursor:pointer;font-family:inherit}
-  #vodaFile::file-selector-button:hover{opacity:.9}
+  .tk-box input[type=file]::file-selector-button:hover{opacity:.9}
   .voda-how summary{list-style:none;display:flex;align-items:center;gap:10px;flex-wrap:wrap;cursor:pointer}
   .voda-how summary::-webkit-details-marker{display:none}
   .voda-how-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:10px;
@@ -536,23 +538,11 @@
       <input type="text" id="ordContact" name="contact" required>
       <label for="ordDevice" data-i18n="ord_device">Device ID (from the app)</label>
       <input type="text" id="ordDevice" name="device" required>
-      <label for="ordPlan" data-i18n="ord_plan">License plan</label>
-      <select id="ordPlan" name="plan">
-        <option value="m1" data-i18n="plan_m1">1 Month</option>
-        <option value="m3" data-i18n="plan_m3">3 Months</option>
-        <option value="m6" data-i18n="plan_m6">6 Months</option>
-        <option value="y1" data-i18n="plan_y1">1 Year</option>
-      </select>
-      <label for="ordMethod" data-i18n="ord_method">Payment method</label>
-      <select id="ordMethod" name="method">
-        <option value="Vodafone Cash" data-i18n="ord_m1">Vodafone Cash</option>
-        <option value="PayPal" data-i18n="ord_m2">PayPal</option>
-      </select>
-      <label for="ordSender" data-i18n="ord_sender">Payment reference — transaction ID from your receipt (or exact sender name)</label>
-      <input type="text" id="ordSender" name="sender" required>
-      <div class="tk-note ord-warn" data-i18n="ord_warn"></div>
-      <details class="ord-how">
-        <summary data-i18n="ord_how_t"></summary>
+      <details class="ord-how voda-how">
+        <summary>
+          <span class="voda-how-btn">📷 <span data-i18n="voda_how_b">How to find my Device ID?</span></span>
+          <span class="voda-how-tip" data-i18n="voda_how_t">Don't know where to find it? Click here.</span>
+        </summary>
         <ol>
           <li data-i18n="ord_how_1"></li>
           <li data-i18n="ord_how_2"></li>
@@ -561,6 +551,27 @@
         <img class="ord-img" src="img/deviceid-1.png" data-i18n-alt="sv_alt1" alt="Step 1 — Device ID location in the app">
         <img class="ord-img" src="img/deviceid-2.png" data-i18n-alt="sv_alt2" alt="Step 2 — Copy button in the app">
       </details>
+      <label for="ordPlan" data-i18n="ord_plan">License plan</label>
+      <select id="ordPlan" name="plan">
+        <option value="m1" data-i18n="plan_m1">1 Month</option>
+        <option value="m3" data-i18n="plan_m3">3 Months</option>
+        <option value="m6" data-i18n="plan_m6">6 Months</option>
+        <option value="y1" data-i18n="plan_y1">1 Year</option>
+      </select>
+      <div class="voda-price" id="ordPrice"></div>
+      <label for="ordMethod" data-i18n="ord_method">Payment method</label>
+      <select id="ordMethod" name="method">
+        <option value="PayPal" data-i18n="ord_m2">PayPal</option>
+        <option value="Visa" data-i18n="ord_m3">Visa</option>
+      </select>
+      <label for="ordSender" data-i18n="ord_sender">Payment reference — transaction ID from your receipt (or exact payer name)</label>
+      <input type="text" id="ordSender" name="sender" required>
+      <div class="voda-proof-t" data-i18n="voda_proof_t">Payment proof — attach a screenshot, or fill the text fields below:</div>
+      <label for="ordFile" data-i18n="ord_file_l">Screenshot of the payment (optional)</label>
+      <input type="file" id="ordFile" name="file" accept="image/*">
+      <label for="ordAmount" data-i18n="ord_amount">Amount paid (exactly)</label>
+      <input type="text" id="ordAmount" name="amount">
+      <div class="tk-note ord-warn" data-i18n="ord_warn"></div>
       <button type="submit" class="tk-submit" id="ordSubmit" data-i18n="ord_btn">Send order</button>
       <div class="tk-note" data-i18n="ord_note">🕐 We reply within 1–6 hours · 24/7</div>
       <div class="tk-err" id="ordErr" hidden></div>
@@ -608,6 +619,10 @@
         <option value="y1" data-i18n="plan_y1">1 Year</option>
       </select>
       <div class="voda-price" id="vodaPrice"></div>
+      <label for="vodaMethod" data-i18n="ord_method">Payment method</label>
+      <select id="vodaMethod" name="method" disabled>
+        <option value="Vodafone Cash" data-i18n="ord_m1">Vodafone Cash</option>
+      </select>
       <div class="voda-proof-t" data-i18n="voda_proof_t">Payment proof — attach a screenshot, or fill the text fields below:</div>
       <label for="vodaFile" data-i18n="voda_file_l">Screenshot of the transfer (optional)</label>
       <input type="file" id="vodaFile" name="file" accept="image/*">
@@ -617,6 +632,7 @@
       <input type="text" id="vodaTxn" name="txn">
       <label for="vodaSender" data-i18n="ord_sender">Sender name (exactly as it appears)</label>
       <input type="text" id="vodaSender" name="sender">
+      <div class="tk-note ord-warn" data-i18n="ord_warn"></div>
       <button type="submit" class="tk-submit" id="vodaSubmit" data-i18n="voda_btn">Send order</button>
       <div class="tk-note" data-i18n="voda_note">🕐 We reply within 1–6 hours · 24/7</div>
     </form>
@@ -665,6 +681,19 @@
   const EJ_SERVICE_ID = "service_dvexajs";
   const EJ_TEMPLATE_ID = "template_n0ipp4m";
   let EJ_CONFIGURED = true;
+
+  function readFileB64(input){
+    return new Promise(function(resolve){
+      const f = input && input.files && input.files[0];
+      if(!f){ resolve(null); return; }
+      const rd = new FileReader();
+      rd.onload = function(){ try{
+        resolve({ name: f.name, type: (f.type || "image/jpeg") || "application/octet-stream", data: String(rd.result).split(",")[1] || "" });
+      }catch(e){ resolve(null); } };
+      rd.onerror = function(){ resolve(null); };
+      rd.readAsDataURL(f);
+    });
+  }
 
   const VODA_NUMBER = "01065652724";   // Vodafone Cash wallet you receive on
   const PLANS = [
@@ -722,8 +751,10 @@
       ord_sub:"Great — now send your Device ID, where to deliver the key (email / WhatsApp) and the payment reference from your receipt. It becomes an order ticket and we send your key.",
       ord_name:"Your name", ord_contact:"Email / WhatsApp — where the key is delivered",
       ord_device:"Device ID — press the Copy (📋) button next to it in the app",
-      ord_method:"Payment method", ord_m1:"Vodafone Cash", ord_m2:"PayPal",
-      ord_sender:"Payment reference — transaction ID from your receipt (or exact sender name)",
+      ord_method:"Payment method", ord_m1:"Vodafone Cash", ord_m2:"PayPal", ord_m3:"Visa",
+      ord_amount:"Amount paid (exactly)",
+      ord_file_l:"Screenshot of the payment (optional)",
+      ord_sender:"Payment reference — transaction ID from your receipt (or exact payer name)",
       ord_afpay:"Paid? Send your Device ID →",
       ord_warn:"⚠️ We are not responsible if the Device ID is typed incorrectly. Always use the Copy (📋) button next to it in the app — never type it manually.",
       ord_how_t:"💡 How do I find my Device ID?",
@@ -819,7 +850,9 @@
       ord_sub:"ممتاز ✅ — ابعث معرف جهازك + وسيلة الاستلام (ايميل / واتساب) + رقم العملية من الإيصال. بتتحول تذكرة طلب وهنبعتلك الكود على اللي سجلته.",
       ord_name:"اسمك", ord_contact:"الإيميل / الواتساب — اللي هيوصلك عليه الكود",
       ord_device:"معرف الجهاز — استخدم زرار النسخ (📋) اللي جنبه في التطبيق",
-      ord_method:"طريقة الدفع", ord_m1:"فودافون كاش", ord_m2:"باي بال",
+      ord_method:"طريقة الدفع", ord_m1:"فودافون كاش", ord_m2:"باي بال", ord_m3:"فيزا",
+      ord_amount:"المبلغ اللي دفعته (بالظبط)",
+      ord_file_l:"صورة إثبات الدفع (اختياري)",
       ord_sender:"إثبات الدفع — رقم العملية من الإيصال (أو اسم المُرسِل بالظبط)",
       ord_afpay:"تم الدفع؟ ابعث معرف جهازك ←",
       ord_warn:"⚠️ مش هنكون مسؤولين عن كتابة معرف الجهاز بشكل خاطئ. اضمن نقل المعرف بزرار النسخ (📋) اللي جنبه في التطبيق — متكتبش الرقم يدوي.",
@@ -1015,7 +1048,7 @@ let verData = null;
         <h3>${name}</h3>
         <div class="plan-price">$${p.price}</div>
         <div id="ppbtn-${p.id}" class="ppbtn" style="margin:12px 0"></div>
-        <a href="javascript:void(0)" class="ord-afpay" onclick="openOrder('${p.id}');return false;">${L.ord_afpay}</a>
+        <a href="javascript:void(0)" class="ord-afpay" onclick="openOrder();return false;">${L.ord_afpay}</a>
       </div>`;
     }).join("");
   }
@@ -1029,7 +1062,16 @@ let verData = null;
   }
 
   /* ---------- manual order modal ---------- */
-  function openOrder(planId){
+  function updateOrdPrice(){
+    const sel = document.getElementById("ordPlan");
+    const el = document.getElementById("ordPrice");
+    if(!sel || !el) return;
+    const p = VODA_PLAN_PRICES[sel.value];
+    el.textContent = p !== undefined
+      ? (curLang === "ar" ? "السعر: $" + p : "Price: $" + p)
+      : "";
+  }
+  function openOrder(){
     const m = document.getElementById("ordModal");
     m.hidden = false;
     m.setAttribute("aria-hidden","false");
@@ -1037,10 +1079,9 @@ let verData = null;
     document.getElementById("ordForm").hidden = false;
     document.getElementById("ordOk").hidden = true;
     document.getElementById("ordErr").hidden = true;
-    if(planId){
-      const sel = document.getElementById("ordPlan");
-      if(sel && [...sel.options].some(o => o.value === planId)) sel.value = planId;
-    }
+    const sel = document.getElementById("ordPlan");
+    if(sel) sel.value = "m1";
+    updateOrdPrice();
     try{ document.getElementById("ordName").focus(); }catch(e){}
   }
   function closeOrder(){
@@ -1071,7 +1112,8 @@ let verData = null;
       device: document.getElementById("ordDevice").value.trim(),
       plan: document.getElementById("ordPlan").value,
       method: document.getElementById("ordMethod").value,
-      sender: document.getElementById("ordSender").value.trim()
+      sender: document.getElementById("ordSender").value.trim(),
+      amount: document.getElementById("ordAmount").value.trim()
     };
     if(!data.name || !data.contact || !data.device){
       errEl.textContent = ar
@@ -1087,16 +1129,20 @@ let verData = null;
       const msg = "Device ID: " + data.device + "\n"
         + "Plan: " + pl.id + " (" + pl.days + " days, $" + pl.price + ")\n"
         + "Payment method: " + data.method + "\n"
-        + "Sender / Ref: " + (data.sender || "-") + "\n\n"
+        + "Payer / Ref: " + (data.sender || "-") + "\n"
+        + "Amount paid: " + (data.amount || "-") + "\n\n"
         + "Order placed via the website.";
-      await emailjs.send(EJ_SERVICE_ID, EJ_TEMPLATE_ID, {
+      const sendP = {
         ticket_name: data.name,
         ticket_contact: data.contact,
         ticket_category: "Order — " + data.method,
         ticket_message: msg,
         ticket_lang: curLang,
         ticket_page: window.location.href
-      }, { publicKey: EJ_PUBLIC_KEY });
+      };
+      const attach = await readFileB64(document.getElementById("ordFile"));
+      if(attach) sendP.attachments = [attach];
+      await emailjs.send(EJ_SERVICE_ID, EJ_TEMPLATE_ID, sendP, { publicKey: EJ_PUBLIC_KEY });
       document.getElementById("ordForm").reset();
       document.getElementById("ordForm").hidden = true;
       const ok = document.getElementById("ordOk");
@@ -1255,6 +1301,9 @@ let verData = null;
   try{
     document.getElementById("vodaPlan").addEventListener("change", updateVodaPrice);
   }catch(e){}
+  try{
+    document.getElementById("ordPlan").addEventListener("change", updateOrdPrice);
+  }catch(e){}
 
   document.getElementById("vodaForm").addEventListener("submit", async function(e){
     e.preventDefault();
@@ -1274,6 +1323,7 @@ let verData = null;
       contact: document.getElementById("vodaContact").value.trim(),
       device: document.getElementById("vodaDevice").value.trim(),
       plan: document.getElementById("vodaPlan").value,
+      method: document.getElementById("vodaMethod").value,
       sender: document.getElementById("vodaSender").value.trim(),
       amount: document.getElementById("vodaAmount").value.trim(),
       txn: document.getElementById("vodaTxn").value.trim()
@@ -1291,19 +1341,22 @@ let verData = null;
       const pl = PLANS.find(p => p.id === data.plan) || PLANS[3];
       const msg = "Device ID: " + data.device + "\n"
         + "Plan: " + pl.id + " (" + pl.days + " days, $" + pl.price + ")\n"
-        + "Method: Vodafone Cash (Egypt)\n"
+        + "Payment method: " + data.method + "\n"
         + "Sender name (exact): " + (data.sender || "-") + "\n"
         + "Amount sent: " + (data.amount || "-") + "\n"
         + "Transaction number: " + (data.txn || "-") + "\n\n"
         + "Order placed via the website.";
-      await emailjs.send(EJ_SERVICE_ID, EJ_TEMPLATE_ID, {
+      const sendP = {
         ticket_name: data.name,
         ticket_contact: data.contact,
         ticket_category: "Order — Vodafone Cash (Egypt)",
         ticket_message: msg,
         ticket_lang: curLang,
         ticket_page: window.location.href
-      }, { publicKey: EJ_PUBLIC_KEY });
+      };
+      const attach = await readFileB64(document.getElementById("vodaFile"));
+      if(attach) sendP.attachments = [attach];
+      await emailjs.send(EJ_SERVICE_ID, EJ_TEMPLATE_ID, sendP, { publicKey: EJ_PUBLIC_KEY });
       document.getElementById("vodaForm").reset();
       document.getElementById("vodaForm").hidden = true;
       const ok = document.getElementById("vodaOk");
