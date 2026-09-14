@@ -1314,16 +1314,16 @@
   document.getElementById("year").textContent = new Date().getFullYear();
   try{ const nn = document.getElementById("vodaNum"); if(nn) nn.textContent = VODA_NUMBER; }catch(e){}
 
+  try{ const saved = localStorage.getItem("jm_lang"); if (saved === "ar" || saved === "en") curLang = saved; }catch(e){}
   renderPlans();
   renderPayments();
+  applyLang(curLang);
   document.querySelector(".logo").addEventListener("click", function(e){
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     e.preventDefault();
     try{ window.scrollTo({top:0, behavior:"smooth"}); }catch(err){ window.scrollTo(0,0); }
     try{ history.replaceState(null, "", window.location.pathname + window.location.search); }catch(err){}
   });
-  try{ const saved = localStorage.getItem("jm_lang"); if (saved === "ar" || saved === "en") curLang = saved; }catch(e){}
-  applyLang(curLang);
   try{ if (typeof Tawk_API === "undefined") window.Tawk_API = { onLoad: function(){ Tawk_API.setLanguage(curLang); } }; }catch(e){}
   loadReleases();
 </script>
