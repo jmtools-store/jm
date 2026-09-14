@@ -174,7 +174,30 @@
   .buy-btn:hover{opacity:.9}
   .buy-btn2{background:linear-gradient(135deg,#0ea5e9,#6366f1)}
   .buy-tip{color:var(--muted);font-size:12.5px;margin-top:12px}
-  .buy-voda{font-size:20px;font-weight:900;letter-spacing:1px;color:#c7cbfa;margin-bottom:14px}
+  .voda-num{display:flex;align-items:center;justify-content:center;gap:12px;
+      background:rgba(99,102,241,.12);border:1px solid rgba(129,140,248,.35);
+      border-radius:12px;padding:14px 16px;margin:6px 0 10px;cursor:pointer}
+  .voda-num-txt{font-size:26px;font-weight:900;letter-spacing:2px;
+      background:linear-gradient(90deg,#818cf8,#c084fc);-webkit-background-clip:text;
+      background-clip:text;color:transparent}
+  .voda-copy{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);
+      background:rgba(255,255,255,.06);color:var(--txt);font-size:16px;cursor:pointer;flex-shrink:0}
+  .voda-copy:hover{background:rgba(255,255,255,.12)}
+  .voda-tip{text-align:center;color:var(--muted);font-size:12px;margin:0 0 14px}
+  .voda-price{display:block;color:#fbbf24;font-size:16px;font-weight:900;margin-bottom:10px}
+  #vodaFile{width:100%;color:var(--muted);font-size:13.5px;background:rgba(255,255,255,.04);
+      border:1px dashed rgba(129,140,248,.4);border-radius:11px;padding:8px 12px;cursor:pointer;
+      box-sizing:border-box}
+  #vodaFile::file-selector-button{margin-inline-end:12px;padding:7px 15px;border:0;border-radius:9px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;
+      font-size:13px;cursor:pointer;font-family:inherit}
+  #vodaFile::file-selector-button:hover{opacity:.9}
+  .voda-how summary{list-style:none;display:flex;align-items:center;gap:10px;flex-wrap:wrap;cursor:pointer}
+  .voda-how summary::-webkit-details-marker{display:none}
+  .voda-how-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+      font-weight:800;font-size:13px;white-space:nowrap}
+  .voda-how-tip{color:var(--muted);font-size:12.5px}
   .g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
   .plan-card{text-align:center}
   .plan-days{color:var(--muted);font-size:13px;font-weight:700;letter-spacing:.3px}
@@ -434,7 +457,6 @@
         <div class="ic">📲</div>
         <h3 data-i18n="buy_voda_t">Vodafone Cash — Egypt</h3>
         <p data-i18n="buy_voda_d">Transfer the amount to our Vodafone Cash wallet, then place the order with the exact sender name so we can confirm it.</p>
-        <div class="buy-voda" id="vodaNum"></div>
         <button type="button" class="buy-btn buy-btn2" onclick="openVoda();return false;" data-i18n="buy_man_btn">Order via Vodafone Cash</button>
         <p class="buy-tip" data-i18n="buy_man_after">We reply within 1–6 hours · 24/7</p>
       </div>
@@ -557,7 +579,7 @@
       <span id="vodaNum" class="voda-num-txt"></span>
       <button type="button" class="voda-copy" id="vodaCopyBtn">📋</button>
     </div>
-    <p class="voda-tip" data-i18n="voda_tip">Copied ↑ (auto) — paste it anywhere, or press 📋 to copy the number.</p>
+    <p class="voda-tip" data-i18n="voda_tip">Press 📋 to copy the number</p>
     <form id="vodaForm" novalidate>
       <label for="vodaName" data-i18n="ord_name">Your name</label>
       <input type="text" id="vodaName" name="name" required>
@@ -565,6 +587,19 @@
       <input type="text" id="vodaContact" name="contact" required>
       <label for="vodaDevice" data-i18n="ord_device">Device ID (from the app)</label>
       <input type="text" id="vodaDevice" name="device" required>
+      <details class="ord-how voda-how">
+        <summary>
+          <span class="voda-how-btn">📷 <span data-i18n="voda_how_b">How to find my Device ID?</span></span>
+          <span class="voda-how-tip" data-i18n="voda_how_t">Don't know where to find it? Click here.</span>
+        </summary>
+        <ol>
+          <li data-i18n="ord_how_1"></li>
+          <li data-i18n="ord_how_2"></li>
+          <li data-i18n="ord_how_3"></li>
+        </ol>
+        <img class="ord-img" src="img/deviceid-1.png" data-i18n-alt="sv_alt1" alt="Step 1 — Device ID location in the app">
+        <img class="ord-img" src="img/deviceid-2.png" data-i18n-alt="sv_alt2" alt="Step 2 — Copy button in the app">
+      </details>
       <label for="vodaPlan" data-i18n="ord_plan">License plan</label>
       <select id="vodaPlan" name="plan">
         <option value="m1" data-i18n="plan_m1">1 Month</option>
@@ -694,7 +729,7 @@
       ord_how_t:"💡 How do I find my Device ID?",
       ord_how_1:"Open the JM app and look at the main window.",
       ord_how_2:"Find the line “This device ID:” near the license status.",
-      ord_how_3:"Press the Copy (نسخ) button next to it — it copies automatically. Then paste it in the field above.",
+      ord_how_3:"Press the Copy (📋) button next to it — it copies automatically. Then paste it in the field above.",
       ord_btn:"Send order", ord_note:"🕐 We reply within 1–6 hours · 24/7",
       resp_line:"🕐 We reply within 1–6 hours · 24/7",
       nav_install:"Install",
@@ -725,13 +760,15 @@
       q4d:"Because the file is not signed with a paid certificate, SmartScreen may warn. Click “More info → Run anyway” — the file is 100% safe. <a href=\"#install\" style=\"color:#7dd3fc\">See the illustrated installation guide →</a>",
       voda_t:"Vodafone Cash — Egypt payment",
       voda_sub:"Send the exact amount to this Vodafone Cash number:",
-      voda_tip:"Copied ↑ (auto) — paste it anywhere, or press 📋 to copy the number.",
+      voda_tip:"Press 📋 to copy the number →",
       voda_proof_t:"Payment proof — attach a screenshot, or fill the text fields below:",
       voda_file_l:"Screenshot of the transfer (optional)",
       voda_amount:"Amount sent (exactly)",
       voda_txn:"Transaction number (from the receipt)",
       voda_btn:"Send order",
       voda_note:"🕐 We reply within 1–6 hours · 24/7",
+      voda_how_b:"How to find my Device ID?",
+      voda_how_t:"Don't know where to find it? Click here.",
       sv_alt1:"Step 1 — Device ID location in the app",
       sv_alt2:"Step 2 — Copy button in the app",
       foot_rights:" · All rights reserved",
@@ -820,13 +857,15 @@
       q4d:"لأن الملف مش موقّع بشهادة دفع سنوية، ممكن يظهر تحذير Smartscreen. دوس \"معلومات أكثر ← تشغيل على أي حال\" — الملف سليم 100%. <a href=\"#install\" style=\"color:#7dd3fc\">شوف دليل التثبيت بالصور ←</a>",
       voda_t:"فودافون كاش — دفع داخل مصر",
       voda_sub:"حوّل المبلغ بالظبط على رقم فودافون كاش ده:",
-      voda_tip:"اتنسخ ↑ (تلقائي) — الصقه في أي مكان، أو دوس 📋 عشان تنسخ الرقم.",
+      voda_tip:"دوس 📋 عشان تنسخ الرقم",
       voda_proof_t:"إثبات الدفع — ارفق سكرينشوت، أو املأ الخانات اللي تحت:",
       voda_file_l:"صورة التحويل (اختياري)",
       voda_amount:"المبلغ اللي اتبعت (بالظبط)",
       voda_txn:"رقم العملية (من الإيصال)",
       voda_btn:"إرسال الطلب",
       voda_note:"🕐 بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
+      voda_how_b:"إزاي أجيب معرف الجهاز؟",
+      voda_how_t:"لو مش عارف تجيبه منين؟ اضغط هنا",
       sv_alt1:"خطوة 1 — مكان معرف الجهاز في التطبيق",
       sv_alt2:"خطوة 2 — زر النسخ في التطبيق",
       foot_rights:" · جميع الحقوق محفوظة",
@@ -1148,6 +1187,7 @@
     document.getElementById("vodaForm").hidden = false;
     document.getElementById("vodaOk").hidden = true;
     document.getElementById("vodaErr").hidden = true;
+    updateVodaPrice();
     try{ document.getElementById("vodaName").focus(); }catch(e){}
   }
   function closeVoda(){
@@ -1192,16 +1232,17 @@
   }catch(e){}
 
   const VODA_PLAN_PRICES = { m1:5, m3:12, m6:20, y1:30 };
+  function updateVodaPrice(){
+    const sel = document.getElementById("vodaPlan");
+    const el = document.getElementById("vodaPrice");
+    if(!sel || !el) return;
+    const p = VODA_PLAN_PRICES[sel.value];
+    el.textContent = p !== undefined
+      ? (curLang === "ar" ? "السعر: $" + p : "Price: $" + p)
+      : "";
+  }
   try{
-    document.getElementById("vodaPlan").addEventListener("change", function(){
-      const p = VODA_PLAN_PRICES[this.value];
-      const el = document.getElementById("vodaPrice");
-      if(el){
-        el.textContent = p !== undefined
-          ? (curLang === "ar" ? "السعر: $" + p : "Price: $" + p)
-          : "";
-      }
-    });
+    document.getElementById("vodaPlan").addEventListener("change", updateVodaPrice);
   }catch(e){}
 
   document.getElementById("vodaForm").addEventListener("submit", async function(e){
@@ -1271,6 +1312,7 @@
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
+  try{ const nn = document.getElementById("vodaNum"); if(nn) nn.textContent = VODA_NUMBER; }catch(e){}
 
   renderPlans();
   renderPayments();
