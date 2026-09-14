@@ -320,7 +320,7 @@
             <path d="M5 15.5v1.5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1.5"/>
           </g>
           <text x="134" y="84" font-family="Segoe UI, Cairo, Arial" font-size="12" font-weight="700" fill="#fff" data-i18n="sv_dl_btn">Download now</text>
-          <text x="134" y="100" font-family="Segoe UI, Cairo, Arial" font-size="10" fill="#e0e0ff" data-i18n="sv_dl_btn2">83 MB · installer</text>
+          <text x="134" y="100" font-family="Segoe UI, Cairo, Arial" font-size="10" fill="#e0e0ff" data-i18n="sv_dl_btn2">79 MB · installer</text>
           <path d="M170 122 v22" stroke="#3b4568" stroke-width="2" stroke-dasharray="4 4"/>
           <path d="M170 142 l-5-6 M170 142 l5-6" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round"/>
           <rect x="72" y="154" width="196" height="54" rx="11" fill="#161b2e" stroke="#2a3150"/>
@@ -363,7 +363,7 @@
           <circle cx="210" cy="246" r="9" fill="#a855f7"/>
           <text x="216" y="250" font-family="Segoe UI, Cairo, Arial" font-size="10" font-weight="700" fill="#fff">2</text>
           <text x="226" y="250" font-family="Segoe UI, Cairo, Arial" font-size="11.5" font-weight="700" fill="#eef1ff" data-i18n="sv_h2">· then “Run anyway”</text>
-          <text x="170" y="266" font-family="Segoe UI, Cairo, Arial" font-size="10" fill="#9aa3c0" text-anchor="middle" data-i18n="sv_hb">SmartScreen builds trust as downloads grow — verify file size (83 MB) and page before opening.</text>
+          <text x="170" y="266" font-family="Segoe UI, Cairo, Arial" font-size="10" fill="#9aa3c0" text-anchor="middle" data-i18n="sv_hb">SmartScreen builds trust as downloads grow — verify file size (79 MB) and page before opening.</text>
         </svg>
         <div class="figcap" data-i18n="sv2_cap">Same in Arabic Windows: “More info” then “Run anyway”.</div>
       </div>
@@ -385,7 +385,7 @@
             <path d="M14 3v4h4"/>
           </g>
           <text x="112" y="30" font-family="Segoe UI, Cairo, Arial" font-size="11.5" font-weight="700" fill="#eef1ff" data-i18n="sv_file2">JM_Setup.exe</text>
-          <text x="112" y="45" font-family="Segoe UI, Cairo, Arial" font-size="10" fill="#9aa3c0" data-i18n="sv_size2">83 MB</text>
+          <text x="112" y="45" font-family="Segoe UI, Cairo, Arial" font-size="10" fill="#9aa3c0" data-i18n="sv_size2">79 MB</text>
           <path d="M170 58 v18" stroke="#3b4568" stroke-width="2" stroke-dasharray="4 4"/>
           <path d="M170 74 l6-7 M170 74 l-6-7" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round"/>
           <rect x="46" y="84" width="248" height="126" rx="11" fill="#151a2c" stroke="#2a3150"/>
@@ -409,7 +409,7 @@
 
     <details class="inst-extra">
       <summary data-i18n="inst_warn_t">Still blocked? SmartScreen or antivirus details</summary>
-      <p data-i18n="inst_warn_d">Some browsers show extra steps. In Edge / Chrome: if you see “Keep” or “Keep anyway”, choose it. If Windows asks about an unknown publisher, use “More info → Run anyway”. The file JM_Setup.exe is about 83 MB. Real commercial programs are signed with a paid certificate (which costs money every year) — ours is not, that is why you see the warning. If your antivirus quarantines the file, restore it and add an exception for it, then contact support.</p>
+      <p data-i18n="inst_warn_d">Some browsers show extra steps. In Edge / Chrome: if you see “Keep” or “Keep anyway”, choose it. If Windows asks about an unknown publisher, use “More info → Run anyway”. The file JM_Setup.exe is about 79 MB. Real commercial programs are signed with a paid certificate (which costs money every year) — ours is not, that is why you see the warning. If your antivirus quarantines the file, restore it and add an exception for it, then contact support.</p>
     </details>
   </div>
 </section>
@@ -536,8 +536,8 @@
           <li data-i18n="ord_how_2"></li>
           <li data-i18n="ord_how_3"></li>
         </ol>
-        <img class="ord-img" src="img/deviceid-1.png" alt="Step 1 — Device ID location in the app">
-        <img class="ord-img" src="img/deviceid-2.png" alt="Step 2 — Copy button in the app">
+        <img class="ord-img" src="img/deviceid-1.png" data-i18n-alt="sv_alt1" alt="Step 1 — Device ID location in the app">
+        <img class="ord-img" src="img/deviceid-2.png" data-i18n-alt="sv_alt2" alt="Step 2 — Copy button in the app">
       </details>
       <button type="submit" class="tk-submit" id="ordSubmit" data-i18n="ord_btn">Send order</button>
       <div class="tk-note" data-i18n="ord_note">🕐 We reply within 1–6 hours · 24/7</div>
@@ -596,7 +596,7 @@
     </div>
     <details>
       <summary data-i18n="q1t">The download is blocked / the file looks too big. Why?</summary>
-      <p data-i18n="q1d">The file is about 83 MB because it bundles all libraries and FFmpeg internally, so it runs on any machine with no extra installs. If the download stops, try another browser or a different network.</p>
+      <p data-i18n="q1d">The file is about 79 MB because it bundles all libraries and FFmpeg internally, so it runs on any machine with no extra installs. If the download stops, try another browser or a different network.</p>
     </details>
     <details>
       <summary data-i18n="q2t">Does the app need internet or a special account?</summary>
@@ -638,6 +638,8 @@
     {id:"m6", days:"180", price:"20", en:"6 Months", ar:"6 شهور"},
     {id:"y1", days:"365", price:"30", en:"1 Year",   ar:"سنة"}
   ];
+
+  const PP_HOSTED = {"m1":"Z8SHUGWLUUWKL","m3":"HVNEMJZJ872CQ","m6":"J39WDME7V5LUA","y1":"Z4LNS53RW6P46"};
 
   const I18N = {
     en: {
@@ -698,29 +700,40 @@
       nav_install:"Install",
       inst_h2:"How to install", inst_sub:"From download to running in 3 simple steps",
       s1t:"Download the installer", s1d:"Click the “Download now” button on this page (or any version in the table). The file JM_Setup.exe is saved to your Downloads folder.",
-      sv_url:"jmtools.github.io/jm", sv_dl_btn:"Download now", sv_dl_btn2:"83 MB · installer",
+      sv_url:"jmtools.github.io/jm", sv_dl_btn:"Download now", sv_dl_btn2:"79 MB · installer",
       sv_file:"JM_Setup.exe", sv_filedone:"Saved to Downloads ✓", sv1_cap:"The file lands in your Downloads folder.",
       s2t:"A warning may appear — that’s normal", s2d:"New apps with few downloads are often flagged by Windows SmartScreen. It does not mean the file is bad — the file is checked and safe. Here is the exact screen:",
       sv_win_title:"Windows protected your PC",
       sv_a1:"Microsoft Defender SmartScreen prevented an", sv_a2:"unrecognized app from starting. That is", sv_a3:"normal — new apps with few downloads yet.",
       sv_a4:"App: JM_Setup.exe · Publisher: Unknown", sv_more:"More info", sv_run:"Run anyway",
       sv_h1:"· Click “More info”", sv_h2:"· then “Run anyway”",
-      sv_hb:"SmartScreen builds trust as downloads grow — verify file size (83 MB) and page before opening.",
+      sv_hb:"SmartScreen builds trust as downloads grow — verify file size (79 MB) and page before opening.",
       sv2_cap:"Same in Arabic Windows: “More info” then “Run anyway”.",
       s3t:"Install and run", s3d:"Open JM_Setup.exe from Downloads, then follow the installer: click “Next” → “Install”. The app starts automatically when finished, and updates itself from now on.",
-      sv_file2:"JM_Setup.exe", sv_size2:"83 MB", sv_wiz:"JM Setup — Installer", sv_inst:"Installing JM…",
+      sv_file2:"JM_Setup.exe", sv_size2:"79 MB", sv_wiz:"JM Setup — Installer", sv_inst:"Installing JM…",
       sv_cancel:"Cancel", sv_install:"Install", sv_done:"✓ Done — JM opens automatically", sv3_cap:"Follow: Next → Install → Done.",
       inst_warn_t:"Still blocked? SmartScreen or antivirus details",
-      inst_warn_d:"Some browsers show extra steps. In Edge / Chrome: if you see “Keep” or “Keep anyway”, choose it. If Windows asks about an unknown publisher, use “More info → Run anyway”. The file JM_Setup.exe is about 83 MB. Real commercial programs are signed with a paid certificate (which costs money every year) — ours is not, that is why you see the warning. If your antivirus quarantines the file, restore it and add an exception for it, then contact support.",
+      inst_warn_d:"Some browsers show extra steps. In Edge / Chrome: if you see “Keep” or “Keep anyway”, choose it. If Windows asks about an unknown publisher, use “More info → Run anyway”. The file JM_Setup.exe is about 79 MB. Real commercial programs are signed with a paid certificate (which costs money every year) — ours is not, that is why you see the warning. If your antivirus quarantines the file, restore it and add an exception for it, then contact support.",
       faq_h2:"Frequently asked questions",
       q1t:"The download is blocked / the file looks too big. Why?",
-      q1d:"The file is about 83 MB because it bundles all libraries and FFmpeg internally, so it runs on any machine with no extra installs. If the download stops, try another browser or a different network.",
+      q1d:"The file is about 79 MB because it bundles all libraries and FFmpeg internally, so it runs on any machine with no extra installs. If the download stops, try another browser or a different network.",
       q2t:"Does the app need internet or a special account?",
       q2d:"The app works fully offline, except for license activation/checks and periodic update checks.",
       q3t:"How do I get a new version?",
       q3d:"The app checks for updates automatically. As soon as a new version is released, you will see a notification inside the app and can download and install it directly.",
       q4t:"Windows shows an “unknown publisher” warning — what do I do?",
       q4d:"Because the file is not signed with a paid certificate, SmartScreen may warn. Click “More info → Run anyway” — the file is 100% safe. <a href=\"#install\" style=\"color:#7dd3fc\">See the illustrated installation guide →</a>",
+      voda_t:"Vodafone Cash — Egypt payment",
+      voda_sub:"Send the exact amount to this Vodafone Cash number:",
+      voda_tip:"Copied ↑ (auto) — paste it anywhere, or press 📋 to copy the number.",
+      voda_proof_t:"Payment proof — attach a screenshot, or fill the text fields below:",
+      voda_file_l:"Screenshot of the transfer (optional)",
+      voda_amount:"Amount sent (exactly)",
+      voda_txn:"Transaction number (from the receipt)",
+      voda_btn:"Send order",
+      voda_note:"🕐 We reply within 1–6 hours · 24/7",
+      sv_alt1:"Step 1 — Device ID location in the app",
+      sv_alt2:"Step 2 — Copy button in the app",
       foot_rights:" · All rights reserved",
       foot_note:"JM is not affiliated with IMVU™ — a private tool for licensed users only"
     },
@@ -782,29 +795,40 @@
       nav_install:"التثبيت",
       inst_h2:"طريقة التثبيت", inst_sub:"من التحميل للتشغيل في 3 خطوات بسيطة",
       s1t:"حمّل الملف", s1d:"دوس على زر “تحميل الآن” في الصفحة (أو أي نسخة في الجدول). الملف JM_Setup.exe بيترجّل على مجلد التحميلات (Downloads).",
-      sv_url:"jmtools.github.io/jm", sv_dl_btn:"تحميل الآن", sv_dl_btn2:"83 ميغا · المثبّت",
+      sv_url:"jmtools.github.io/jm", sv_dl_btn:"تحميل الآن", sv_dl_btn2:"79 ميغا · المثبّت",
       sv_file:"JM_Setup.exe", sv_filedone:"وصل في التحميلات ✓", sv1_cap:"الملف بيوصل لمجلد التحميلات تلقائيًا.",
       s2t:"هيظهر تنبيه — طبيعي 100%", s2d:"التطبيقات الجديدة اللي تحميلاتها قليلة بيعملهم Windows SmartScreen تحذير. دي مش معناه إن الملف مش سليم — الملف متأكد منه وآمن. دي الشاشة اللي هتشوفها بالظبط:",
       sv_win_title:"تم حماية الكمبيوتر بواسطة Windows",
       sv_a1:"منع تطبيق غير معروف من البدء،", sv_a2:"وهذا طبيعي للتطبيقات الجديدة", sv_a3:"التي تحميلاتها ما زالت قليلة.",
       sv_a4:"التطبيق: JM_Setup.exe · الناشر: غير معروف", sv_more:"معلومات أكثر", sv_run:"تشغيل على أي حال",
       sv_h1:"· اضغط “معلومات أكثر”", sv_h2:"· ثم “تشغيل على أي حال”",
-      sv_hb:"الثقة بتكبر مع كترة التحميلات — اتأكد من حجم الملف (83 ميغا) والصفحة قبل ما تفتحه.",
+      sv_hb:"الثقة بتكبر مع كترة التحميلات — اتأكد من حجم الملف (79 ميغا) والصفحة قبل ما تفتحه.",
       sv2_cap:"في النسخة العربية لـ Windows نفس الحركة: “معلومات أكثر” ثم “تشغيل على أي حال”.",
       s3t:"التثبيت والتشغيل", s3d:"افتح JM_Setup.exe من مجلد التحميلات واتبع المثبّت: دوس “التالي” ← “تثبيت”. البرنامج بيفتح تلقائيًا بعد الخلاص، وبعدها بيحدّث نفسه من تلقاء نفسه.",
-      sv_file2:"JM_Setup.exe", sv_size2:"83 ميغا", sv_wiz:"مثبّت JM", sv_inst:"جاري تثبيت JM…",
+      sv_file2:"JM_Setup.exe", sv_size2:"79 ميغا", sv_wiz:"مثبّت JM", sv_inst:"جاري تثبيت JM…",
       sv_cancel:"إلغاء", sv_install:"تثبيت", sv_done:"✓ خلص — JM بيفتح تلقائيًا", sv3_cap:"اتبع: التالي ← تثبيت ← انتهى.",
       inst_warn_t:"لسه متقفلة؟ تفاصيل SmartScreen والأنتيفايروس",
-      inst_warn_d:"بعض المتصفحات طالبة خطوات زيادة: في Edge / Chrome لو ظهرت “Keep / إبقاء” اخترها. لو ويندوز سأل عن “ناشر غير معروف” استخدم “معلومات أكثر ← تشغيل على أي حال”. الملف حوالي 83 ميغا. البرامج التجارية الحقيقية بتوقّع بشهادة مدفوعة (بتتكلف فلوس كل سنة) — برنامجنا مش موقّع، وعشان كده التنبيه ظاهر. لو الأنتيفايروس عزل الملف، استرجعه وأضف استثناء له، ولو محتاج مساعدة تواصل مع الدعم.",
+      inst_warn_d:"بعض المتصفحات طالبة خطوات زيادة: في Edge / Chrome لو ظهرت “Keep / إبقاء” اخترها. لو ويندوز سأل عن “ناشر غير معروف” استخدم “معلومات أكثر ← تشغيل على أي حال”. الملف حوالي 79 ميغا. البرامج التجارية الحقيقية بتوقّع بشهادة مدفوعة (بتتكلف فلوس كل سنة) — برنامجنا مش موقّع، وعشان كده التنبيه ظاهر. لو الأنتيفايروس عزل الملف، استرجعه وأضف استثناء له، ولو محتاج مساعدة تواصل مع الدعم.",
       faq_h2:"أسئلة شائعة",
       q1t:"مينفعش التحميل؟ الموقع بيقول الملف كبير",
-      q1d:"الملف حجمه تقريباً 83 ميغابايت لأنه بيشمل كل المكتبات وffmpeg داخلياً، فيشتغل على أي جهاز من غير تثبيت إضافات. لو التحميل واقف، جرّب من متصفح آخر أو شبكة مختلفة.",
+      q1d:"الملف حجمه تقريباً 79 ميغابايت لأنه بيشمل كل المكتبات وffmpeg داخلياً، فيشتغل على أي جهاز من غير تثبيت إضافات. لو التحميل واقف، جرّب من متصفح آخر أو شبكة مختلفة.",
       q2t:"هل البرنامج محتاج إنترنت أو حساب خاص؟",
       q2d:"البرنامج شغال أوفلاين بالكامل باستثناء الترقيم/التحقق من الترخيص، وفحص التحديثات بشكل دوري.",
       q3t:"لو جاني تحديث جديد إزاي؟",
       q3d:"البرنامج بيفحص التحديثات تلقائياً، وأول ما النسخة الجديدة تتطرح هتلاقي تنبيه داخل البرنامج وتنزيلها وتثبيتها مباشر.",
       q4t:"ويندوز بيحذر من ملف مجهول — أعمل إيه؟",
       q4d:"لأن الملف مش موقّع بشهادة دفع سنوية، ممكن يظهر تحذير Smartscreen. دوس \"معلومات أكثر ← تشغيل على أي حال\" — الملف سليم 100%. <a href=\"#install\" style=\"color:#7dd3fc\">شوف دليل التثبيت بالصور ←</a>",
+      voda_t:"فودافون كاش — دفع داخل مصر",
+      voda_sub:"حوّل المبلغ بالظبط على رقم فودافون كاش ده:",
+      voda_tip:"اتنسخ ↑ (تلقائي) — الصقه في أي مكان، أو دوس 📋 عشان تنسخ الرقم.",
+      voda_proof_t:"إثبات الدفع — ارفق سكرينشوت، أو املأ الخانات اللي تحت:",
+      voda_file_l:"صورة التحويل (اختياري)",
+      voda_amount:"المبلغ اللي اتبعت (بالظبط)",
+      voda_txn:"رقم العملية (من الإيصال)",
+      voda_btn:"إرسال الطلب",
+      voda_note:"🕐 بنرد خلال من ساعة إلى 6 ساعات · شغل 24 ساعة",
+      sv_alt1:"خطوة 1 — مكان معرف الجهاز في التطبيق",
+      sv_alt2:"خطوة 2 — زر النسخ في التطبيق",
       foot_rights:" · جميع الحقوق محفوظة",
       foot_note:"JM غير تابع لـ IMVU™ — أداة خاصة لأصحاب الرخص فقط"
     }
@@ -824,17 +848,23 @@
       const key = el.getAttribute("data-i18n");
       if (t[key] !== undefined) el.innerHTML = t[key];
     });
+    document.querySelectorAll("[data-i18n-alt]").forEach(el => {
+      const key = el.getAttribute("data-i18n-alt");
+      if (t[key] !== undefined) el.setAttribute("alt", t[key]);
+    });
     document.querySelectorAll("svg text").forEach(el => {
       const anchor = el.getAttribute("text-anchor") || "start";
       el.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
       el.setAttribute("text-anchor", anchor === "middle" ? "middle" : (lang === "ar" ? "end" : "start"));
     });
-    document.getElementById("langBtn").textContent = lang === "ar" ? "English" : "العربية";
+    document.getElementById("langBtn").textContent = lang === "ar" ? "EN" : "AR";
   }
 
   function setLang(lang){
     try{ localStorage.setItem("jm_lang", lang); }catch(e){}
     applyLang(lang);
+    renderPlans();
+    renderPayments();
     try{ if (typeof Tawk_API !== "undefined" && Tawk_API.setLanguage) Tawk_API.setLanguage(lang); }catch(e){}
   }
 
@@ -898,13 +928,13 @@
       const rows = `<table class="tbl"><thead><tr>
           <th>${t().ver_th_version}</th><th>${t().ver_th_size}</th><th>${t().ver_th_dl}</th>
         </tr></thead><tbody>
-        <tr><td><span class="vtag">v1.0.4</span><span class="tag-chip">${t().ver_latest}</span></td>
-            <td class="tsize">83.1 MB</td>
-            <td><a class="tdl" href="${LATEST_URL}">⬇ ${t().ver_dl}</a></td></tr>
+      <tr><td><span class="vtag">v1.0.5</span><span class="tag-chip">${t().ver_latest}</span></td>
+          <td class="tsize">79.3 MB</td>
+          <td><a class="tdl" href="${LATEST_URL}">⬇ ${t().ver_dl}</a></td></tr>
         </tbody></table>`;
       wrap.innerHTML = '<div class="loading-err">' + t().ver_err + '</div>' + rows;
-      if(badge) badge.textContent = "(v1.0.4)";
-      if(latestVer) latestVer.textContent = "v1.0.4";
+      if(badge) badge.textContent = "(v1.0.5)";
+      if(latestVer) latestVer.textContent = "v1.0.5";
       if(count) count.textContent = "1+";
     }
   }
@@ -927,6 +957,7 @@
   function renderPlans(){
     const box = document.getElementById("buyPlans");
     if(!box) return;
+    const L = I18N[curLang];
     box.innerHTML = PLANS.map(p => {
       const name = (curLang === "ar") ? p.ar : p.en;
       return `<div class="card plan-card">
@@ -934,9 +965,17 @@
         <h3>${name}</h3>
         <div class="plan-price">$${p.price}</div>
         <div id="ppbtn-${p.id}" class="ppbtn" style="margin:12px 0"></div>
-        <a href="javascript:void(0)" class="ord-afpay" onclick="openOrder('${p.id}');return false;" data-i18n="ord_afpay">Paid? Send your Device ID →</a>
+        <a href="javascript:void(0)" class="ord-afpay" onclick="openOrder('${p.id}');return false;">${L.ord_afpay}</a>
       </div>`;
     }).join("");
+  }
+
+  function renderPayments(){
+    for(const pid of Object.keys(PP_HOSTED)){
+      const hid = PP_HOSTED[pid];
+      if(!hid) continue;
+      try{ paypal.HostedButtons({hostedButtonId:hid}).render("#ppbtn-"+pid); }catch(e){}
+    }
   }
 
   /* ---------- manual order modal ---------- */
@@ -1234,12 +1273,7 @@
   document.getElementById("year").textContent = new Date().getFullYear();
 
   renderPlans();
-  const PP_HOSTED = {"m1":"Z8SHUGWLUUWKL","m3":"HVNEMJZJ872CQ","m6":"J39WDME7V5LUA","y1":"Z4LNS53RW6P46"};
-  for(const pid of Object.keys(PP_HOSTED)){
-    const hid = PP_HOSTED[pid];
-    if(!hid) continue;
-    try{ paypal.HostedButtons({hostedButtonId:hid}).render("#ppbtn-"+pid); }catch(e){}
-  }
+  renderPayments();
   document.querySelector(".logo").addEventListener("click", function(e){
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     e.preventDefault();
