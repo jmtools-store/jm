@@ -435,7 +435,7 @@
         <h3 data-i18n="buy_voda_t">Vodafone Cash — Egypt</h3>
         <p data-i18n="buy_voda_d">Transfer the amount to our Vodafone Cash wallet, then place the order with the exact sender name so we can confirm it.</p>
         <div class="buy-voda" id="vodaNum"></div>
-        <button type="button" class="buy-btn buy-btn2" onclick="openOrder();return false;" data-i18n="buy_man_btn">Place order</button>
+        <button type="button" class="buy-btn buy-btn2" onclick="openVoda();return false;" data-i18n="buy_man_btn">Place order</button>
         <p class="buy-tip" data-i18n="buy_man_after">We reply within 1–6 hours · 24/7</p>
       </div>
 
@@ -547,6 +547,48 @@
   </div>
 </div>
 
+<div class="tk-modal" id="vodaModal" hidden aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="tk-box">
+    <button type="button" class="tk-close" id="vodaClose" aria-label="Close">✕</button>
+    <div class="tk-ic">📲</div>
+    <h3 data-i18n="voda_t">Vodafone Cash — Egypt payment</h3>
+    <p class="tk-sub" data-i18n="voda_sub">Send the exact amount to this Vodafone Cash number:</p>
+    <div class="voda-num" id="vodaNumBox">
+      <span id="vodaNum" class="voda-num-txt"></span>
+      <button type="button" class="voda-copy" id="vodaCopyBtn">📋</button>
+    </div>
+    <p class="voda-tip" data-i18n="voda_tip">Copied ↑ (auto) — paste it anywhere, or press 📋 to copy the number.</p>
+    <form id="vodaForm" novalidate>
+      <label for="vodaName" data-i18n="ord_name">Your name</label>
+      <input type="text" id="vodaName" name="name" required>
+      <label for="vodaContact" data-i18n="ord_contact">Email / WhatsApp — where the key is delivered</label>
+      <input type="text" id="vodaContact" name="contact" required>
+      <label for="vodaDevice" data-i18n="ord_device">Device ID (from the app)</label>
+      <input type="text" id="vodaDevice" name="device" required>
+      <label for="vodaPlan" data-i18n="ord_plan">License plan</label>
+      <select id="vodaPlan" name="plan">
+        <option value="m1" data-i18n="plan_m1">1 Month</option>
+        <option value="m3" data-i18n="plan_m3">3 Months</option>
+        <option value="m6" data-i18n="plan_m6">6 Months</option>
+        <option value="y1" data-i18n="plan_y1">1 Year</option>
+      </select>
+      <div class="voda-price" id="vodaPrice"></div>
+      <div class="voda-proof-t" data-i18n="voda_proof_t">Payment proof — attach a screenshot, or fill the text fields below:</div>
+      <label for="vodaFile" data-i18n="voda_file_l">Screenshot of the transfer (optional)</label>
+      <input type="file" id="vodaFile" name="file" accept="image/*">
+      <label for="vodaAmount" data-i18n="voda_amount">Amount sent (exactly)</label>
+      <input type="text" id="vodaAmount" name="amount">
+      <label for="vodaTxn" data-i18n="voda_txn">Transaction number (from the receipt)</label>
+      <input type="text" id="vodaTxn" name="txn">
+      <label for="vodaSender" data-i18n="ord_sender">Sender name (exactly as it appears)</label>
+      <input type="text" id="vodaSender" name="sender">
+      <button type="submit" class="tk-submit" id="vodaSubmit" data-i18n="voda_btn">Send order</button>
+      <div class="tk-note" data-i18n="voda_note">🕐 We reply within 1–6 hours · 24/7</div>
+    </form>
+    <div class="tk-err" id="vodaErr" hidden></div>
+    <div class="tk-ok" id="vodaOk" hidden></div>
+  </div>
+</div>
 <section id="faq">
   <div class="wrap">
     <div class="sec-head">
@@ -1058,8 +1100,139 @@
     }
   });
 
+  /* ---------- Vodafone Cash modal (Egypt only) ---------- */
+  function openVoda(){
+    const m = document.getElementById("vodaModal");
+    m.hidden = false;
+    m.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+    document.getElementById("vodaForm").hidden = false;
+    document.getElementById("vodaOk").hidden = true;
+    document.getElementById("vodaErr").hidden = true;
+    try{ document.getElementById("vodaName").focus(); }catch(e){}
+  }
+  function closeVoda(){
+    const m = document.getElementById("vodaModal");
+    m.hidden = true;
+    m.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  }
+  document.getElementById("vodaClose").addEventListener("click", closeVoda);
+  document.getElementById("vodaModal").addEventListener("click", function(e){ if(e.target === this) closeVoda(); });
+
+  var _copyTimer = null;
+  function copyVodaNum(btn){
+    const done = function(){
+      if(btn){ btn.textContent = "✓"; }
+      if(_copyTimer) clearTimeout(_copyTimer);
+      _copyTimer = setTimeout(function(){
+        if(btn){ btn.textContent = "📋"; }
+      }, 1600);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(String(VODA_NUMBER)).then(done, function(){ fallbackCopy(VODA_NUMBER); done(); });
+    }else{
+      fallbackCopy(VODA_NUMBER); done();
+    }
+  }
+  function fallbackCopy(txt){
+    try{
+      const ta = document.createElement("textarea");
+      ta.value = txt;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand("copy"); }catch(e){}
+      document.body.removeChild(ta);
+    }catch(e){}
+  }
+  try{ document.getElementById("vodaCopyBtn").addEventListener("click", function(ev){ copyVodaNum(ev.currentTarget); }); }catch(e){}
+  try{
+    document.getElementById("vodaNumBox").addEventListener("click", function(){ copyVodaNum(null); });
+  }catch(e){}
+
+  const VODA_PLAN_PRICES = { m1:5, m3:12, m6:20, y1:30 };
+  try{
+    document.getElementById("vodaPlan").addEventListener("change", function(){
+      const p = VODA_PLAN_PRICES[this.value];
+      const el = document.getElementById("vodaPrice");
+      if(el){
+        el.textContent = p !== undefined
+          ? (curLang === "ar" ? "السعر: $" + p : "Price: $" + p)
+          : "";
+      }
+    });
+  }catch(e){}
+
+  document.getElementById("vodaForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    const errEl = document.getElementById("vodaErr");
+    const btn = document.getElementById("vodaSubmit");
+    errEl.hidden = true;
+    const ar = curLang === "ar";
+    if(!EJ_CONFIGURED){
+      errEl.textContent = ar
+        ? "فورمة الطلب مش مفعّلة بعد — استخدم الشات المباشر مؤقتًا."
+        : "The order form is not configured yet — use the live chat for now.";
+      errEl.hidden = false;
+      return;
+    }
+    const data = {
+      name: document.getElementById("vodaName").value.trim(),
+      contact: document.getElementById("vodaContact").value.trim(),
+      device: document.getElementById("vodaDevice").value.trim(),
+      plan: document.getElementById("vodaPlan").value,
+      sender: document.getElementById("vodaSender").value.trim(),
+      amount: document.getElementById("vodaAmount").value.trim(),
+      txn: document.getElementById("vodaTxn").value.trim()
+    };
+    if(!data.name || !data.contact || !data.device){
+      errEl.textContent = ar
+        ? "اكتب الاسم ووسيلة التواصل ومعرف الجهاز."
+        : "Please fill in your name, contact and Device ID.";
+      errEl.hidden = false;
+      return;
+    }
+    try{
+      btn.disabled = true;
+      btn.textContent = ar ? "جاري الإرسال…" : "Sending…";
+      const pl = PLANS.find(p => p.id === data.plan) || PLANS[3];
+      const msg = "Device ID: " + data.device + "\n"
+        + "Plan: " + pl.id + " (" + pl.days + " days, $" + pl.price + ")\n"
+        + "Method: Vodafone Cash (Egypt)\n"
+        + "Sender name (exact): " + (data.sender || "-") + "\n"
+        + "Amount sent: " + (data.amount || "-") + "\n"
+        + "Transaction number: " + (data.txn || "-") + "\n\n"
+        + "Order placed via the website.";
+      await emailjs.send(EJ_SERVICE_ID, EJ_TEMPLATE_ID, {
+        ticket_name: data.name,
+        ticket_contact: data.contact,
+        ticket_category: "Order — Vodafone Cash (Egypt)",
+        ticket_message: msg,
+        ticket_lang: curLang,
+        ticket_page: window.location.href
+      }, { publicKey: EJ_PUBLIC_KEY });
+      document.getElementById("vodaForm").reset();
+      document.getElementById("vodaForm").hidden = true;
+      const ok = document.getElementById("vodaOk");
+      ok.textContent = ar
+        ? "✓ تم استلام طلبك! هنتأكد من التحويل ونرسل الكود خلال من ساعة إلى 6 ساعات."
+        : "✓ Order received! We'll confirm the transfer and send the key within 1–6 hours.";
+      ok.hidden = false;
+    }catch(err){
+      errEl.textContent = ar
+        ? "حصلت مشكلة في الإرسال. جرّب تاني، أو استخدم الشات المباشر."
+        : "Something went wrong sending the order. Try again, or use the live chat.";
+      errEl.hidden = false;
+    }finally{
+      btn.disabled = false;
+      btn.textContent = ar ? "إرسال الطلب" : "Send order";
+    }
+  });
+
   document.getElementById("year").textContent = new Date().getFullYear();
-  try{ document.getElementById("vodaNum").textContent = VODA_NUMBER; }catch(e){}
+
   renderPlans();
   const PP_HOSTED = {"m1":"Z8SHUGWLUUWKL","m3":"HVNEMJZJ872CQ","m6":"J39WDME7V5LUA","y1":"Z4LNS53RW6P46"};
   for(const pid of Object.keys(PP_HOSTED)){
